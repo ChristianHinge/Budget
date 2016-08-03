@@ -1,0 +1,10 @@
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\bin\Debug\Tester.exe.config
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\bin\Debug\Tester.exe
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\bin\Debug\Tester.pdb
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\obj\Debug\Tester.csprojResolveAssemblyReference.cache
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\obj\Debug\Tester.Properties.Resources.resources
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\obj\Debug\Tester.csproj.GenerateResource.Cache
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\obj\Debug\Tester.exe
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\obj\Debug\Tester.pdb
+c:\users\bruger\documents\visual studio 2015\Projects\Tester\Tester\obj\Debug\Tester.Budget.resources
+C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\obj\Debug\Tester.Indstillinger.resources

@@ -1,0 +1,3 @@
+C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\bin\Debug\Tester.exe.config
+C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\obj\Debug\Tester.exe
+C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\obj\Debug\Tester.pdb
