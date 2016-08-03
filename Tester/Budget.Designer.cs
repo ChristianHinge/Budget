@@ -35,9 +35,18 @@
             this.btnOpret_i = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
             this.tabPage1 = new System.Windows.Forms.TabPage();
+            this.lblDato_i = new System.Windows.Forms.Label();
             this.datePicker_i = new System.Windows.Forms.DateTimePicker();
             this.cBoxKategori_i = new System.Windows.Forms.ComboBox();
             this.tabPage2 = new System.Windows.Forms.TabPage();
+            this.lblDato_u = new System.Windows.Forms.Label();
+            this.datePicker_u = new System.Windows.Forms.DateTimePicker();
+            this.cBoxKategori_u = new System.Windows.Forms.ComboBox();
+            this.txtBeløb_u = new System.Windows.Forms.TextBox();
+            this.btnOpret_u = new System.Windows.Forms.Button();
+            this.lblBeskrivelse_u = new System.Windows.Forms.Label();
+            this.lblBeløb_u = new System.Windows.Forms.Label();
+            this.txtBeskrivelse_u = new System.Windows.Forms.TextBox();
             this.listPosteringer = new System.Windows.Forms.ListView();
             this.cHeaderBeskrivelse = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHeaderDato = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
@@ -47,15 +56,6 @@
             this.btnDelete = new System.Windows.Forms.Button();
             this.lblBalance = new System.Windows.Forms.Label();
             this.btnIndstillinger = new System.Windows.Forms.Button();
-            this.lblDato_i = new System.Windows.Forms.Label();
-            this.lblDato_u = new System.Windows.Forms.Label();
-            this.datePicker_u = new System.Windows.Forms.DateTimePicker();
-            this.cBoxKategorier_u = new System.Windows.Forms.ComboBox();
-            this.txtBeløb_u = new System.Windows.Forms.TextBox();
-            this.btnOpret_u = new System.Windows.Forms.Button();
-            this.lblBeskrivelse_u = new System.Windows.Forms.Label();
-            this.lblBeløb_u = new System.Windows.Forms.Label();
-            this.txtBeskrivelse_u = new System.Windows.Forms.TextBox();
             this.tabControl1.SuspendLayout();
             this.tabPage1.SuspendLayout();
             this.tabPage2.SuspendLayout();
@@ -106,7 +106,7 @@
             this.btnOpret_i.TabIndex = 4;
             this.btnOpret_i.Text = "Opret";
             this.btnOpret_i.UseVisualStyleBackColor = true;
-            this.btnOpret_i.Click += new System.EventHandler(this.button1_Click);
+            this.btnOpret_i.Click += new System.EventHandler(this.OpretPostering);
             // 
             // tabControl1
             // 
@@ -136,6 +136,16 @@
             this.tabPage1.TabIndex = 0;
             this.tabPage1.Text = "Indtægt";
             // 
+            // lblDato_i
+            // 
+            this.lblDato_i.AutoSize = true;
+            this.lblDato_i.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDato_i.Location = new System.Drawing.Point(7, 80);
+            this.lblDato_i.Name = "lblDato_i";
+            this.lblDato_i.Size = new System.Drawing.Size(44, 20);
+            this.lblDato_i.TabIndex = 8;
+            this.lblDato_i.Text = "Dato";
+            // 
             // datePicker_i
             // 
             this.datePicker_i.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
@@ -158,7 +168,7 @@
             this.tabPage2.BackColor = System.Drawing.Color.Red;
             this.tabPage2.Controls.Add(this.lblDato_u);
             this.tabPage2.Controls.Add(this.datePicker_u);
-            this.tabPage2.Controls.Add(this.cBoxKategorier_u);
+            this.tabPage2.Controls.Add(this.cBoxKategori_u);
             this.tabPage2.Controls.Add(this.txtBeløb_u);
             this.tabPage2.Controls.Add(this.btnOpret_u);
             this.tabPage2.Controls.Add(this.lblBeskrivelse_u);
@@ -170,6 +180,80 @@
             this.tabPage2.Size = new System.Drawing.Size(285, 156);
             this.tabPage2.TabIndex = 1;
             this.tabPage2.Text = "Udgift";
+            // 
+            // lblDato_u
+            // 
+            this.lblDato_u.AutoSize = true;
+            this.lblDato_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblDato_u.Location = new System.Drawing.Point(6, 80);
+            this.lblDato_u.Name = "lblDato_u";
+            this.lblDato_u.Size = new System.Drawing.Size(44, 20);
+            this.lblDato_u.TabIndex = 16;
+            this.lblDato_u.Text = "Dato";
+            // 
+            // datePicker_u
+            // 
+            this.datePicker_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.datePicker_u.Location = new System.Drawing.Point(78, 75);
+            this.datePicker_u.Name = "datePicker_u";
+            this.datePicker_u.Size = new System.Drawing.Size(200, 26);
+            this.datePicker_u.TabIndex = 13;
+            // 
+            // cBoxKategori_u
+            // 
+            this.cBoxKategori_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cBoxKategori_u.FormattingEnabled = true;
+            this.cBoxKategori_u.Location = new System.Drawing.Point(184, 11);
+            this.cBoxKategori_u.Name = "cBoxKategori_u";
+            this.cBoxKategori_u.Size = new System.Drawing.Size(94, 26);
+            this.cBoxKategori_u.TabIndex = 10;
+            // 
+            // txtBeløb_u
+            // 
+            this.txtBeløb_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBeløb_u.Location = new System.Drawing.Point(78, 11);
+            this.txtBeløb_u.Name = "txtBeløb_u";
+            this.txtBeløb_u.Size = new System.Drawing.Size(100, 26);
+            this.txtBeløb_u.TabIndex = 9;
+            // 
+            // btnOpret_u
+            // 
+            this.btnOpret_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btnOpret_u.Location = new System.Drawing.Point(78, 107);
+            this.btnOpret_u.Name = "btnOpret_u";
+            this.btnOpret_u.Size = new System.Drawing.Size(200, 39);
+            this.btnOpret_u.TabIndex = 15;
+            this.btnOpret_u.Text = "Opret";
+            this.btnOpret_u.UseVisualStyleBackColor = true;
+            this.btnOpret_u.Click += new System.EventHandler(this.OpretPostering);
+            // 
+            // lblBeskrivelse_u
+            // 
+            this.lblBeskrivelse_u.AutoSize = true;
+            this.lblBeskrivelse_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeskrivelse_u.Location = new System.Drawing.Point(6, 46);
+            this.lblBeskrivelse_u.Name = "lblBeskrivelse_u";
+            this.lblBeskrivelse_u.Size = new System.Drawing.Size(64, 20);
+            this.lblBeskrivelse_u.TabIndex = 14;
+            this.lblBeskrivelse_u.Text = "Beskriv.";
+            // 
+            // lblBeløb_u
+            // 
+            this.lblBeløb_u.AutoSize = true;
+            this.lblBeløb_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblBeløb_u.Location = new System.Drawing.Point(6, 17);
+            this.lblBeløb_u.Name = "lblBeløb_u";
+            this.lblBeløb_u.Size = new System.Drawing.Size(50, 20);
+            this.lblBeløb_u.TabIndex = 11;
+            this.lblBeløb_u.Text = "Beløb";
+            // 
+            // txtBeskrivelse_u
+            // 
+            this.txtBeskrivelse_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtBeskrivelse_u.Location = new System.Drawing.Point(78, 43);
+            this.txtBeskrivelse_u.Name = "txtBeskrivelse_u";
+            this.txtBeskrivelse_u.Size = new System.Drawing.Size(200, 26);
+            this.txtBeskrivelse_u.TabIndex = 12;
             // 
             // listPosteringer
             // 
@@ -221,7 +305,7 @@
             this.btnDelete.TabIndex = 8;
             this.btnDelete.Text = "Slet Postering";
             this.btnDelete.UseVisualStyleBackColor = true;
-            this.btnDelete.Click += new System.EventHandler(this.btnDelete_Click);
+            this.btnDelete.Click += new System.EventHandler(this.SletPosteringer);
             // 
             // lblBalance
             // 
@@ -240,90 +324,6 @@
             this.btnIndstillinger.TabIndex = 10;
             this.btnIndstillinger.Text = "Indstillinger";
             this.btnIndstillinger.UseVisualStyleBackColor = true;
-            this.btnIndstillinger.Click += new System.EventHandler(this.btnIndstillinger_Click);
-            // 
-            // lblDato_i
-            // 
-            this.lblDato_i.AutoSize = true;
-            this.lblDato_i.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDato_i.Location = new System.Drawing.Point(7, 80);
-            this.lblDato_i.Name = "lblDato_i";
-            this.lblDato_i.Size = new System.Drawing.Size(44, 20);
-            this.lblDato_i.TabIndex = 8;
-            this.lblDato_i.Text = "Dato";
-            // 
-            // lblDato_u
-            // 
-            this.lblDato_u.AutoSize = true;
-            this.lblDato_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblDato_u.Location = new System.Drawing.Point(6, 80);
-            this.lblDato_u.Name = "lblDato_u";
-            this.lblDato_u.Size = new System.Drawing.Size(44, 20);
-            this.lblDato_u.TabIndex = 16;
-            this.lblDato_u.Text = "Dato";
-            // 
-            // datePicker_u
-            // 
-            this.datePicker_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.datePicker_u.Location = new System.Drawing.Point(78, 75);
-            this.datePicker_u.Name = "datePicker_u";
-            this.datePicker_u.Size = new System.Drawing.Size(200, 26);
-            this.datePicker_u.TabIndex = 13;
-            // 
-            // cBoxKategorier_u
-            // 
-            this.cBoxKategorier_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.cBoxKategorier_u.FormattingEnabled = true;
-            this.cBoxKategorier_u.Location = new System.Drawing.Point(184, 11);
-            this.cBoxKategorier_u.Name = "cBoxKategorier_u";
-            this.cBoxKategorier_u.Size = new System.Drawing.Size(94, 26);
-            this.cBoxKategorier_u.TabIndex = 10;
-            // 
-            // txtBeløb_u
-            // 
-            this.txtBeløb_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBeløb_u.Location = new System.Drawing.Point(78, 11);
-            this.txtBeløb_u.Name = "txtBeløb_u";
-            this.txtBeløb_u.Size = new System.Drawing.Size(100, 26);
-            this.txtBeløb_u.TabIndex = 9;
-            // 
-            // btnOpret_u
-            // 
-            this.btnOpret_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btnOpret_u.Location = new System.Drawing.Point(78, 107);
-            this.btnOpret_u.Name = "btnOpret_u";
-            this.btnOpret_u.Size = new System.Drawing.Size(200, 39);
-            this.btnOpret_u.TabIndex = 15;
-            this.btnOpret_u.Text = "Opret";
-            this.btnOpret_u.UseVisualStyleBackColor = true;
-            // 
-            // lblBeskrivelse_u
-            // 
-            this.lblBeskrivelse_u.AutoSize = true;
-            this.lblBeskrivelse_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeskrivelse_u.Location = new System.Drawing.Point(6, 46);
-            this.lblBeskrivelse_u.Name = "lblBeskrivelse_u";
-            this.lblBeskrivelse_u.Size = new System.Drawing.Size(64, 20);
-            this.lblBeskrivelse_u.TabIndex = 14;
-            this.lblBeskrivelse_u.Text = "Beskriv.";
-            // 
-            // lblBeløb_u
-            // 
-            this.lblBeløb_u.AutoSize = true;
-            this.lblBeløb_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblBeløb_u.Location = new System.Drawing.Point(6, 17);
-            this.lblBeløb_u.Name = "lblBeløb_u";
-            this.lblBeløb_u.Size = new System.Drawing.Size(50, 20);
-            this.lblBeløb_u.TabIndex = 11;
-            this.lblBeløb_u.Text = "Beløb";
-            // 
-            // txtBeskrivelse_u
-            // 
-            this.txtBeskrivelse_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtBeskrivelse_u.Location = new System.Drawing.Point(78, 43);
-            this.txtBeskrivelse_u.Name = "txtBeskrivelse_u";
-            this.txtBeskrivelse_u.Size = new System.Drawing.Size(200, 26);
-            this.txtBeskrivelse_u.TabIndex = 12;
             // 
             // Budget
             // 
@@ -375,7 +375,7 @@
         private System.Windows.Forms.Label lblDato_i;
         private System.Windows.Forms.Label lblDato_u;
         private System.Windows.Forms.DateTimePicker datePicker_u;
-        private System.Windows.Forms.ComboBox cBoxKategorier_u;
+        private System.Windows.Forms.ComboBox cBoxKategori_u;
         private System.Windows.Forms.TextBox txtBeløb_u;
         private System.Windows.Forms.Button btnOpret_u;
         private System.Windows.Forms.Label lblBeskrivelse_u;

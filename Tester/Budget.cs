@@ -20,69 +20,110 @@ namespace Tester
             InitializeComponent();
             udgifter = new List<Posteringer>();
             indtægter = new List<Posteringer>();
-            foreach (string kategori in Posteringer.Kategorier)
-            {
-                cBoxKategori_i.Items.Add(kategori);
-            }
-            cBoxKategori_i.SelectedIndex = 0;
 
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            SetControlPositions();
+            PrepareControls();
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        //Opret postering BLIVER KALDT AF DE TO OPRET KNAPPER
+        private void OpretPostering(object sender, EventArgs e)
         {
-            string beskrivelse = txtBeskrivelse_i.Text;
-            string beløb = txtBeløb_i.Text;
-            DateTime date = datePicker_i.Value;
-            Posteringer ny = new Posteringer(beskrivelse, Mathh.stringToFloat(beløb), cBoxKategori_i.SelectedItem.ToString(), date, false);
-            listPosteringer.Items.Add(ny.ListItem);
-            ny.ListItemIndex = listPosteringer.Items.IndexOf(ny.ListItem);
-            indtægter.Add(ny);
+            string beskrivelse;
+            string beløb;
+            string kategori;
+            DateTime date;
+            bool erUdgift;
+
+            //Hvis intægtknappen trykkes oprettes en indtægt
+            if (sender == btnOpret_i)
+            {
+                beskrivelse = txtBeskrivelse_i.Text;
+                beløb = txtBeløb_i.Text;
+                kategori = cBoxKategori_i.SelectedItem.ToString();
+                date = datePicker_i.Value;
+                erUdgift = false;
+
+                Posteringer postering = new Posteringer(beskrivelse, Mathh.stringToFloat(beløb), kategori, date, erUdgift);
+                listPosteringer.Items.Add(postering.ListItem);
+                indtægter.Add(postering);
+            }
+
+            //Hvis udgiftknappen trykkes oprettes en udgift
+            else if (sender == btnOpret_u)
+            {
+                beskrivelse = txtBeskrivelse_u.Text;
+                beløb = txtBeløb_u.Text;
+                kategori = cBoxKategori_u.SelectedItem.ToString();
+                date = datePicker_u.Value;
+                erUdgift = true; 
+
+                Posteringer postering = new Posteringer(beskrivelse, Mathh.stringToFloat(beløb), kategori, date, erUdgift);
+                listPosteringer.Items.Add(postering.ListItem);
+                udgifter.Add(postering);
+            }
 
             lblBalance.Text = Posteringer.Balance.ToString() + "   " + indtægter.Count.ToString();
         }
 
 
-        private void btnDelete_Click(object sender, EventArgs e)
+
+        //Sletter de valgte udgifter og opdatterer label (Sender = KNAP)
+        private void SletPosteringer(object sender, EventArgs e)
         {
             Posteringer postering;
             foreach (ListViewItem hej in listPosteringer.SelectedItems)
             {
                 postering = GetPostering(hej);
-                indtægter.Remove(postering);
+
+                if (udgifter.Contains(postering))
+                    udgifter.Remove(postering);
+
+                else if (indtægter.Contains(postering))
+                    indtægter.Remove(postering);
+
+                else
+                    throw new System.InvalidOperationException("Posteringen var hverken i indtægterlisten eller i udgifter listen");
+
                 postering.Delete();
                 listPosteringer.Items.Remove(hej);
             }
 
             lblBalance.Text = Posteringer.Balance.ToString() +"   "+ indtægter.Count.ToString();
         }
-        // void DeleteListItem(int index)
 
-
+        //Finder og returnere en postering givet et listviewItem
         private Posteringer GetPostering(ListViewItem item)
         {
-            foreach (Posteringer postering in indtægter)
-            {
-                if (postering.ListItem == item)
-                    return postering;
-            }
-            return new Posteringer("lol",666,"xd", new DateTime() ,false);
+            foreach (Posteringer ipostering in indtægter)
+                if (ipostering.ListItem == item)
+                    return ipostering;
+
+            foreach (Posteringer upostering in udgifter)
+                if (upostering.ListItem == item)
+                    return upostering;
+
+            //Hvis posteringen ikke findes - hvilket ikke burde ske - opstår der er en error
+            throw new System.InvalidOperationException("Item was not found, something went wrong");
 
         }
-
-        private void btnIndstillinger_Click(object sender, EventArgs e)
-        {
-            
-        }
-
 
         //Sætter udgift-tabbens controls' positioner og størrelse til dem i indtægt-tabben
-        private void SetControlPositions()
+        //Tilføjer items til dropdownlister
+        private void PrepareControls()
         {
+            foreach (string kategori in Posteringer.iKategorier)
+                cBoxKategori_i.Items.Add(kategori);
+
+            cBoxKategori_i.SelectedIndex = 0;
+
+            foreach (string kategori in Posteringer.uKategorier)
+                cBoxKategori_u.Items.Add(kategori);
+
+            cBoxKategori_u.SelectedIndex = 0;
+
             lblBeløb_u.Location = lblBeløb_i.Location;
             lblBeløb_u.Size = lblBeløb_i.Size;
 
@@ -98,11 +139,16 @@ namespace Tester
             txtBeskrivelse_u.Location = txtBeskrivelse_i.Location;
             txtBeskrivelse_u.Location = txtBeskrivelse_i.Location;
 
-            cBoxKategorier_u.Location = cBoxKategori_i.Location;
-            cBoxKategorier_u.Size = cBoxKategori_i.Size;
+            cBoxKategori_u.Location = cBoxKategori_i.Location;
+            cBoxKategori_u.Size = cBoxKategori_i.Size;
 
             datePicker_u.Location = datePicker_i.Location;
             datePicker_u.Size = datePicker_i.Size;
+
+            btnOpret_u.Location = btnOpret_i.Location;
+            btnOpret_u.Size = btnOpret_i.Size;
         }
+
+
     }
 }

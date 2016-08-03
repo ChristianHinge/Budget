@@ -10,19 +10,19 @@ namespace Tester
     
     class Posteringer
     {
-        private bool erUdgift;
-        public static List<String> Kategorier = new List<string> { "Løn", "SU", "Gaver","Andet"};
+
+
+        //Liste med udgift og indtægt kategorier
+        public static List<string> iKategorier = new List<string> { "Løn", "SU", "Gaver","Andet"};
+        public static List<string> uKategorier = new List<string> { "Mad", "Gaver", "Tøj", "Abonnementer", "Andet" };
+        
+        //Private posteringsvariabler
         private string kategori;
         private DateTime dato;
-        public int ListItemIndex;
-        private ListViewItem listItem;
-        public ListViewItem ListItem
-        {
-            get
-            {
-                return listItem;
-            }
-        }
+        private bool erUdgift;
+
+        //Static properties
+        private static float sumUdgift = 0;
         public static float SamledeUdgift
         {
             get
@@ -31,6 +31,7 @@ namespace Tester
             }
         }
 
+        private static float sumIndtægt = 0;
         public static float SamledeIndtægt
         {
             get
@@ -47,9 +48,17 @@ namespace Tester
             }
         }
 
+        //Properties
+        private ListViewItem listItem;
+        public ListViewItem ListItem
+        {
+            get
+            {
+                return listItem;
+            }
+        }
 
-        private static float sumUdgift = 0;
-        private static float sumIndtægt = 0;
+        private float pris;
         public float Pris
         {
             get
@@ -57,6 +66,8 @@ namespace Tester
                 return pris;
             }
         }
+
+        private string beskrivelse;
         public string Beskrivelse
         {
             get
@@ -64,10 +75,9 @@ namespace Tester
                 return beskrivelse;
             } 
         }
-        private float pris;
-        private string beskrivelse;
 
-        //DECLARATION
+
+        //DECLARATION giver værdier til alle fields =======================================================================================================================
         public Posteringer(string navn, float beløb, string kat, DateTime date, bool udgift)
         {
             pris = beløb;
@@ -89,26 +99,27 @@ namespace Tester
             MakeListItem();
         }
 
-        public string GetInfo()
-        {
-            return (Beskrivelse + Pris.ToString());
-        }
-
+        //Laver et list item som har alle værdier til tabellen. Gemmes i en public readonly property
         private void MakeListItem()
         {
             listItem = new ListViewItem(Beskrivelse);
             listItem.SubItems.Add(dato.ToString());
             listItem.SubItems.Add(Pris.ToString()+" Kr.");
             listItem.SubItems.Add(kategori);
+
             if (erUdgift)
                 listItem.SubItems.Add("Udgift");
             else
                 listItem.SubItems.Add("Indtægt");
 
         }
+        //Ændrer sum indtægter eller udgifter når slettet
         public void Delete()
         {
-            sumIndtægt -= pris;
+            if (erUdgift)
+                sumUdgift -= pris;
+            else
+                sumIndtægt -= pris;
         }
     }
 }
