@@ -1,8 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Windows.Forms;
 
-
-namespace Tester
+namespace BudgetProgram
 {
     static class Mathh
     {
@@ -61,9 +61,6 @@ namespace Tester
 
             result = stringToFloat(sResult);
             return result;
-
-
-
         }
 
         //Returnerer -1 hvis string er faulty

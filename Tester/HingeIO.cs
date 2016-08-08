@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using Tester;
 
-namespace Tester
+namespace BudgetProgram
 {
     static class HingeIO
     {

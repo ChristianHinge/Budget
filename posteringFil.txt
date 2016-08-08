@@ -1,0 +1,250 @@
+Tilfældig postering nr. 0;568;Andet;08-05-2016 00:00:00;False
+Tilfældig postering nr. 1;1818;SU;08-05-2016 00:00:00;False
+Tilfældig postering nr. 2;1311;Arbejde;08-05-2016 00:00:00;False
+Tilfældig postering nr. 3;389;Hverdag;08-05-2016 00:00:00;True
+Tilfældig postering nr. 4;535;Telefon;02-04-2016 00:00:00;True
+Tilfældig postering nr. 5;1816;Arbejde;02-04-2016 00:00:00;False
+Tilfældig postering nr. 6;1098;Tøj;02-04-2016 00:00:00;True
+Tilfældig postering nr. 7;1424;Andet / Store Køb;02-04-2016 00:00:00;True
+Tilfældig postering nr. 8;925;Abonnementer;02-04-2016 00:00:00;True
+Tilfældig postering nr. 9;1309;Gaver I;20-06-2016 00:00:00;False
+Tilfældig postering nr. 10;1283;Andet;20-06-2016 00:00:00;False
+Tilfældig postering nr. 11;1609;Arbejde;20-06-2016 00:00:00;False
+Tilfældig postering nr. 12;1052;Gaver;20-06-2016 00:00:00;True
+Tilfældig postering nr. 13;144;Mad;20-06-2016 00:00:00;True
+Tilfældig postering nr. 14;1425;Andet;30-01-2016 00:00:00;False
+Tilfældig postering nr. 15;1688;Andet / Store Køb;30-01-2016 00:00:00;True
+Tilfældig postering nr. 16;765;Skole;30-01-2016 00:00:00;True
+Tilfældig postering nr. 17;47;Andet;30-01-2016 00:00:00;False
+Tilfældig postering nr. 18;869;Skole;30-01-2016 00:00:00;True
+Tilfældig postering nr. 19;1707;Gaver I;30-01-2016 00:00:00;False
+Tilfældig postering nr. 20;1579;Mad;01-08-2016 00:00:00;True
+Tilfældig postering nr. 21;1610;Gaver;01-08-2016 00:00:00;True
+Tilfældig postering nr. 22;1878;Gaver;01-08-2016 00:00:00;True
+Tilfældig postering nr. 23;789;Hverdag;01-08-2016 00:00:00;True
+Tilfældig postering nr. 24;1169;Arbejde;01-08-2016 00:00:00;False
+Tilfældig postering nr. 25;451;Telefon;01-08-2016 00:00:00;True
+Tilfældig postering nr. 26;1731;Hverdag;13-03-2016 00:00:00;True
+Tilfældig postering nr. 27;385;Abonnementer;13-03-2016 00:00:00;True
+Tilfældig postering nr. 28;1993;Andet;13-03-2016 00:00:00;False
+Tilfældig postering nr. 29;310;Hverdag;13-03-2016 00:00:00;True
+Tilfældig postering nr. 30;223;Andet / Store Køb;13-03-2016 00:00:00;True
+Tilfældig postering nr. 31;706;Arbejde;06-02-2016 00:00:00;False
+Tilfældig postering nr. 32;1297;Andet / Store Køb;06-02-2016 00:00:00;True
+Tilfældig postering nr. 33;124;SU;06-02-2016 00:00:00;False
+Tilfældig postering nr. 34;1178;Mad;06-02-2016 00:00:00;True
+Tilfældig postering nr. 35;1894;Gaver I;06-02-2016 00:00:00;False
+Tilfældig postering nr. 36;1924;Arbejde;06-02-2016 00:00:00;False
+Tilfældig postering nr. 37;1206;Telefon;25-04-2016 00:00:00;True
+Tilfældig postering nr. 38;667;Andet / Store Køb;25-04-2016 00:00:00;True
+Tilfældig postering nr. 39;814;Gaver I;25-04-2016 00:00:00;False
+Tilfældig postering nr. 40;95;Abonnementer;25-04-2016 00:00:00;True
+Tilfældig postering nr. 41;1376;Gaver I;25-04-2016 00:00:00;False
+Tilfældig postering nr. 42;1414;Andet;13-07-2016 00:00:00;False
+Tilfældig postering nr. 43;1740;Mad;13-07-2016 00:00:00;True
+Tilfældig postering nr. 44;484;Sjov;13-07-2016 00:00:00;True
+Tilfældig postering nr. 45;304;Mad;13-07-2016 00:00:00;True
+Tilfældig postering nr. 46;719;Andet;13-07-2016 00:00:00;False
+Tilfældig postering nr. 47;1135;Skole;07-06-2016 00:00:00;True
+Tilfældig postering nr. 48;235;Arbejde;07-06-2016 00:00:00;False
+Tilfældig postering nr. 49;1399;Hverdag;07-06-2016 00:00:00;True
+Tilfældig postering nr. 0;1015;Telefon;24-07-2016 00:00:00;True
+Tilfældig postering nr. 1;138;Gaver I;24-07-2016 00:00:00;False
+Tilfældig postering nr. 2;243;Tøj;05-03-2016 00:00:00;True
+Tilfældig postering nr. 3;453;Gaver I;05-03-2016 00:00:00;False
+Tilfældig postering nr. 4;549;Hverdag;05-03-2016 00:00:00;True
+Tilfældig postering nr. 5;1117;Mad;05-03-2016 00:00:00;True
+Tilfældig postering nr. 6;1525;Skole;05-03-2016 00:00:00;True
+Tilfældig postering nr. 7;283;Abonnementer;05-03-2016 00:00:00;True
+Tilfældig postering nr. 8;721;Andet;23-05-2016 00:00:00;False
+Tilfældig postering nr. 9;778;Hverdag;23-05-2016 00:00:00;True
+Tilfældig postering nr. 10;983;Andet;23-05-2016 00:00:00;False
+Tilfældig postering nr. 11;591;Andet / Store Køb;23-05-2016 00:00:00;True
+Tilfældig postering nr. 12;1072;Andet / Store Køb;23-05-2016 00:00:00;True
+Tilfældig postering nr. 13;1305;Mad;17-04-2016 00:00:00;True
+Tilfældig postering nr. 14;1823;Tøj;17-04-2016 00:00:00;True
+Tilfældig postering nr. 15;1883;Arbejde;17-04-2016 00:00:00;False
+Tilfældig postering nr. 16;146;Andet / Store Køb;17-04-2016 00:00:00;True
+Tilfældig postering nr. 17;1463;Andet;17-04-2016 00:00:00;False
+Tilfældig postering nr. 18;441;Andet;17-04-2016 00:00:00;False
+Tilfældig postering nr. 19;618;Hverdag;05-07-2016 00:00:00;True
+Tilfældig postering nr. 20;1935;SU;05-07-2016 00:00:00;False
+Tilfældig postering nr. 21;1100;SU;05-07-2016 00:00:00;False
+Tilfældig postering nr. 22;876;SU;05-07-2016 00:00:00;False
+Tilfældig postering nr. 23;1545;Abonnementer;05-07-2016 00:00:00;True
+Tilfældig postering nr. 24;317;Gaver I;30-05-2016 00:00:00;False
+Tilfældig postering nr. 25;1534;SU;30-05-2016 00:00:00;False
+Tilfældig postering nr. 26;815;Gaver;30-05-2016 00:00:00;True
+Tilfældig postering nr. 27;1468;Andet;30-05-2016 00:00:00;False
+Tilfældig postering nr. 28;1900;SU;30-05-2016 00:00:00;False
+Tilfældig postering nr. 29;738;Gaver;30-05-2016 00:00:00;True
+Tilfældig postering nr. 30;622;Andet;10-01-2016 00:00:00;False
+Tilfældig postering nr. 31;1903;Skole;10-01-2016 00:00:00;True
+Tilfældig postering nr. 32;1730;Arbejde;10-01-2016 00:00:00;False
+Tilfældig postering nr. 33;1391;Telefon;10-01-2016 00:00:00;True
+Tilfældig postering nr. 34;1035;Arbejde;10-01-2016 00:00:00;False
+Tilfældig postering nr. 35;259;Sjov;29-03-2016 00:00:00;True
+Tilfældig postering nr. 36;1162;SU;29-03-2016 00:00:00;False
+Tilfældig postering nr. 37;677;Mad;29-03-2016 00:00:00;True
+Tilfældig postering nr. 38;1033;SU;29-03-2016 00:00:00;False
+Tilfældig postering nr. 39;315;Gaver;29-03-2016 00:00:00;True
+Tilfældig postering nr. 40;1595;Telefon;29-03-2016 00:00:00;True
+Tilfældig postering nr. 41;877;Arbejde;22-02-2016 00:00:00;False
+Tilfældig postering nr. 42;965;Hverdag;22-02-2016 00:00:00;True
+Tilfældig postering nr. 43;1714;Andet;22-02-2016 00:00:00;False
+Tilfældig postering nr. 44;1132;Hverdag;22-02-2016 00:00:00;True
+Tilfældig postering nr. 45;823;Andet;22-02-2016 00:00:00;False
+Tilfældig postering nr. 46;365;Mad;11-05-2016 00:00:00;True
+Tilfældig postering nr. 47;1704;Hverdag;11-05-2016 00:00:00;True
+Tilfældig postering nr. 48;490;Abonnementer;11-05-2016 00:00:00;True
+Tilfældig postering nr. 49;710;Abonnementer;11-05-2016 00:00:00;True
+Tilfældig postering nr. 0;1385;Andet / Store Køb;09-04-2016 00:00:00;True
+Tilfældig postering nr. 1;1888;Telefon;09-04-2016 00:00:00;True
+Tilfældig postering nr. 2;1266;Arbejde;26-06-2016 00:00:00;False
+Tilfældig postering nr. 3;372;SU;26-06-2016 00:00:00;False
+Tilfældig postering nr. 4;1079;Mad;26-06-2016 00:00:00;True
+Tilfældig postering nr. 5;58;Telefon;26-06-2016 00:00:00;True
+Tilfældig postering nr. 6;211;Hverdag;26-06-2016 00:00:00;True
+Tilfældig postering nr. 7;700;Gaver;26-06-2016 00:00:00;True
+Tilfældig postering nr. 8;477;Abonnementer;26-06-2016 00:00:00;True
+Tilfældig postering nr. 9;1845;Abonnementer;06-02-2016 00:00:00;True
+Tilfældig postering nr. 10;655;Skole;06-02-2016 00:00:00;True
+Tilfældig postering nr. 11;867;Arbejde;06-02-2016 00:00:00;False
+Tilfældig postering nr. 12;1071;Skole;06-02-2016 00:00:00;True
+Tilfældig postering nr. 13;1802;Andet;06-02-2016 00:00:00;False
+Tilfældig postering nr. 14;878;Gaver I;06-02-2016 00:00:00;False
+Tilfældig postering nr. 15;486;Skole;01-01-2016 00:00:00;True
+Tilfældig postering nr. 16;67;Andet;01-01-2016 00:00:00;False
+Tilfældig postering nr. 17;1992;Andet;01-01-2016 00:00:00;False
+Tilfældig postering nr. 18;737;Tøj;01-01-2016 00:00:00;True
+Tilfældig postering nr. 19;884;Arbejde;01-01-2016 00:00:00;False
+Tilfældig postering nr. 20;1333;Abonnementer;20-03-2016 00:00:00;True
+Tilfældig postering nr. 21;230;Skole;20-03-2016 00:00:00;True
+Tilfældig postering nr. 22;1510;Arbejde;20-03-2016 00:00:00;False
+Tilfældig postering nr. 23;1836;Gaver I;20-03-2016 00:00:00;False
+Tilfældig postering nr. 24;253;Andet / Store Køb;20-03-2016 00:00:00;True
+Tilfældig postering nr. 25;904;Telefon;13-02-2016 00:00:00;True
+Tilfældig postering nr. 26;532;Gaver;13-02-2016 00:00:00;True
+Tilfældig postering nr. 27;1872;Telefon;13-02-2016 00:00:00;True
+Tilfældig postering nr. 28;354;Skole;13-02-2016 00:00:00;True
+Tilfældig postering nr. 29;1634;Andet;13-02-2016 00:00:00;False
+Tilfældig postering nr. 30;1299;Arbejde;13-02-2016 00:00:00;False
+Tilfældig postering nr. 31;1205;Gaver I;02-05-2016 00:00:00;False
+Tilfældig postering nr. 32;555;Telefon;02-05-2016 00:00:00;True
+Tilfældig postering nr. 33;82;Gaver I;02-05-2016 00:00:00;False
+Tilfældig postering nr. 34;1123;Abonnementer;02-05-2016 00:00:00;True
+Tilfældig postering nr. 35;289;Tøj;02-05-2016 00:00:00;True
+Tilfældig postering nr. 36;704;Mad;20-07-2016 00:00:00;True
+Tilfældig postering nr. 37;253;Andet;20-07-2016 00:00:00;False
+Tilfældig postering nr. 38;1127;Sjov;20-07-2016 00:00:00;True
+Tilfældig postering nr. 39;1493;Andet / Store Køb;20-07-2016 00:00:00;True
+Tilfældig postering nr. 40;249;Hverdag;20-07-2016 00:00:00;True
+Tilfældig postering nr. 41;1161;Gaver;14-06-2016 00:00:00;True
+Tilfældig postering nr. 42;1090;Hverdag;14-06-2016 00:00:00;True
+Tilfældig postering nr. 43;822;Skole;14-06-2016 00:00:00;True
+Tilfældig postering nr. 44;200;Andet;14-06-2016 00:00:00;False
+Tilfældig postering nr. 45;1234;Skole;14-06-2016 00:00:00;True
+Tilfældig postering nr. 46;173;Tøj;14-06-2016 00:00:00;True
+Tilfældig postering nr. 47;261;Abonnementer;25-01-2016 00:00:00;True
+Tilfældig postering nr. 48;81;Tøj;25-01-2016 00:00:00;True
+Tilfældig postering nr. 49;1972;SU;25-01-2016 00:00:00;False
+Tilfældig postering nr. 0;1465;Skole;17-02-2016 00:00:00;True
+Tilfældig postering nr. 1;1662;Arbejde;17-02-2016 00:00:00;False
+Tilfældig postering nr. 2;1164;Sjov;17-02-2016 00:00:00;True
+Tilfældig postering nr. 3;213;Telefon;17-02-2016 00:00:00;True
+Tilfældig postering nr. 4;1857;Abonnementer;06-05-2016 00:00:00;True
+Tilfældig postering nr. 5;638;Telefon;06-05-2016 00:00:00;True
+Tilfældig postering nr. 6;1328;Andet;06-05-2016 00:00:00;False
+Tilfældig postering nr. 7;610;Skole;06-05-2016 00:00:00;True
+Tilfældig postering nr. 8;1890;Arbejde;06-05-2016 00:00:00;False
+Tilfældig postering nr. 9;95;SU;31-03-2016 00:00:00;False
+Tilfældig postering nr. 10;1470;Skole;31-03-2016 00:00:00;True
+Tilfældig postering nr. 11;1733;Gaver I;31-03-2016 00:00:00;False
+Tilfældig postering nr. 12;1790;Andet;31-03-2016 00:00:00;False
+Tilfældig postering nr. 13;924;Tøj;31-03-2016 00:00:00;True
+Tilfældig postering nr. 14;1129;Gaver I;31-03-2016 00:00:00;False
+Tilfældig postering nr. 15;1545;Gaver;18-06-2016 00:00:00;True
+Tilfældig postering nr. 16;1837;Arbejde;18-06-2016 00:00:00;False
+Tilfældig postering nr. 17;406;Sjov;18-06-2016 00:00:00;True
+Tilfældig postering nr. 18;1687;Abonnementer;18-06-2016 00:00:00;True
+Tilfældig postering nr. 19;1624;Hverdag;18-06-2016 00:00:00;True
+Tilfældig postering nr. 20;193;Gaver I;29-01-2016 00:00:00;False
+Tilfældig postering nr. 21;999;Telefon;29-01-2016 00:00:00;True
+Tilfældig postering nr. 22;1800;Gaver;29-01-2016 00:00:00;True
+Tilfældig postering nr. 23;1081;SU;29-01-2016 00:00:00;False
+Tilfældig postering nr. 24;363;Hverdag;29-01-2016 00:00:00;True
+Tilfældig postering nr. 25;212;Hverdag;31-07-2016 00:00:00;True
+Tilfældig postering nr. 26;1378;Andet / Store Køb;31-07-2016 00:00:00;True
+Tilfældig postering nr. 27;1008;Abonnementer;31-07-2016 00:00:00;True
+Tilfældig postering nr. 28;1815;Gaver I;31-07-2016 00:00:00;False
+Tilfældig postering nr. 29;232;Abonnementer;31-07-2016 00:00:00;True
+Tilfældig postering nr. 30;940;Skole;31-07-2016 00:00:00;True
+Tilfældig postering nr. 31;31;Skole;12-03-2016 00:00:00;True
+Tilfældig postering nr. 32;178;Andet / Store Køb;12-03-2016 00:00:00;True
+Tilfældig postering nr. 33;1516;Andet;12-03-2016 00:00:00;False
+Tilfældig postering nr. 34;798;Mad;12-03-2016 00:00:00;True
+Tilfældig postering nr. 35;1335;Gaver I;12-03-2016 00:00:00;False
+Tilfældig postering nr. 36;1824;Abonnementer;30-05-2016 00:00:00;True
+Tilfældig postering nr. 37;87;Andet / Store Køb;30-05-2016 00:00:00;True
+Tilfældig postering nr. 38;474;Gaver I;30-05-2016 00:00:00;False
+Tilfældig postering nr. 39;367;Gaver;30-05-2016 00:00:00;True
+Tilfældig postering nr. 40;70;Andet;30-05-2016 00:00:00;False
+Tilfældig postering nr. 41;21;Arbejde;30-05-2016 00:00:00;False
+Tilfældig postering nr. 42;590;Sjov;24-04-2016 00:00:00;True
+Tilfældig postering nr. 43;1332;Skole;24-04-2016 00:00:00;True
+Tilfældig postering nr. 44;1549;SU;24-04-2016 00:00:00;False
+Tilfældig postering nr. 45;715;SU;24-04-2016 00:00:00;False
+Tilfældig postering nr. 46;1056;Gaver I;24-04-2016 00:00:00;False
+Tilfældig postering nr. 47;840;Arbejde;12-07-2016 00:00:00;False
+Tilfældig postering nr. 48;347;Andet / Store Køb;12-07-2016 00:00:00;True
+Tilfældig postering nr. 49;923;Abonnementer;12-07-2016 00:00:00;True
+Tilfældig postering nr. 0;735;Gaver;28-01-2016 00:00:00;True
+Tilfældig postering nr. 1;1919;Gaver;28-01-2016 00:00:00;True
+Tilfældig postering nr. 2;614;Arbejde;28-01-2016 00:00:00;False
+Tilfældig postering nr. 3;1742;Hverdag;28-01-2016 00:00:00;True
+Tilfældig postering nr. 4;681;Gaver I;16-04-2016 00:00:00;False
+Tilfældig postering nr. 5;1133;Andet;16-04-2016 00:00:00;False
+Tilfældig postering nr. 6;1279;Sjov;16-04-2016 00:00:00;True
+Tilfældig postering nr. 7;561;Abonnementer;16-04-2016 00:00:00;True
+Tilfældig postering nr. 8;887;Arbejde;16-04-2016 00:00:00;False
+Tilfældig postering nr. 9;169;Telefon;11-03-2016 00:00:00;True
+Tilfældig postering nr. 10;1029;Arbejde;11-03-2016 00:00:00;False
+Tilfældig postering nr. 11;405;Andet;11-03-2016 00:00:00;False
+Tilfældig postering nr. 12;531;SU;11-03-2016 00:00:00;False
+Tilfældig postering nr. 13;184;Mad;11-03-2016 00:00:00;True
+Tilfældig postering nr. 14;948;Gaver I;11-03-2016 00:00:00;False
+Tilfældig postering nr. 15;5;Arbejde;29-05-2016 00:00:00;False
+Tilfældig postering nr. 16;131;Gaver I;29-05-2016 00:00:00;False
+Tilfældig postering nr. 17;955;Arbejde;29-05-2016 00:00:00;False
+Tilfældig postering nr. 18;1644;Andet;29-05-2016 00:00:00;False
+Tilfældig postering nr. 19;331;Gaver I;29-05-2016 00:00:00;False
+Tilfældig postering nr. 20;1706;Gaver;29-05-2016 00:00:00;True
+Tilfældig postering nr. 21;988;SU;09-01-2016 00:00:00;False
+Tilfældig postering nr. 22;1314;Andet;09-01-2016 00:00:00;False
+Tilfældig postering nr. 23;718;Gaver I;09-01-2016 00:00:00;False
+Tilfældig postering nr. 24;566;Sjov;09-01-2016 00:00:00;True
+Tilfældig postering nr. 25;429;Telefon;09-01-2016 00:00:00;True
+Tilfældig postering nr. 26;634;Gaver I;11-07-2016 00:00:00;False
+Tilfældig postering nr. 27;512;Skole;11-07-2016 00:00:00;True
+Tilfældig postering nr. 28;1793;Tøj;11-07-2016 00:00:00;True
+Tilfældig postering nr. 29;304;SU;11-07-2016 00:00:00;False
+Tilfældig postering nr. 30;982;Arbejde;11-07-2016 00:00:00;False
+Tilfældig postering nr. 31;773;Abonnementer;11-07-2016 00:00:00;True
+Tilfældig postering nr. 32;1399;Skole;21-02-2016 00:00:00;True
+Tilfældig postering nr. 33;1950;Tøj;21-02-2016 00:00:00;True
+Tilfældig postering nr. 34;710;Arbejde;21-02-2016 00:00:00;False
+Tilfældig postering nr. 35;1897;Tøj;21-02-2016 00:00:00;True
+Tilfældig postering nr. 36;1716;Sjov;21-02-2016 00:00:00;True
+Tilfældig postering nr. 37;961;Andet / Store Køb;10-05-2016 00:00:00;True
+Tilfældig postering nr. 38;1631;Tøj;10-05-2016 00:00:00;True
+Tilfældig postering nr. 39;1888;SU;10-05-2016 00:00:00;False
+Tilfældig postering nr. 40;1380;Tøj;10-05-2016 00:00:00;True
+Tilfældig postering nr. 41;487;Mad;10-05-2016 00:00:00;True
+Tilfældig postering nr. 42;1330;Tøj;10-05-2016 00:00:00;True
+Tilfældig postering nr. 43;612;Gaver I;04-04-2016 00:00:00;False
+Tilfældig postering nr. 44;220;Gaver I;04-04-2016 00:00:00;False
+Tilfældig postering nr. 45;833;Arbejde;04-04-2016 00:00:00;False
+Tilfældig postering nr. 46;565;Mad;04-04-2016 00:00:00;True
+Tilfældig postering nr. 47;1845;SU;04-04-2016 00:00:00;False
+Tilfældig postering nr. 48;121;Arbejde;22-06-2016 00:00:00;False
+Tilfældig postering nr. 49;1945;Arbejde;22-06-2016 00:00:00;False

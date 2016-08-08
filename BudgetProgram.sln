@@ -5,6 +5,11 @@ VisualStudioVersion = 14.0.24720.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BudgetProgram", "Tester\BudgetProgram.csproj", "{61267650-951E-496C-A842-938CE95CAFC6}"
 EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{E527DB7F-F8DD-454C-B58C-E2C2A0496A0B}"
+	ProjectSection(SolutionItems) = preProject
+		posteringFil.txt = posteringFil.txt
+	EndProjectSection
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
