@@ -76,10 +76,11 @@
             this.btnVisAlle = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.gboxSøg = new System.Windows.Forms.GroupBox();
-            this.cboxBegræns = new System.Windows.Forms.CheckBox();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
             this.cBoxMåned = new System.Windows.Forms.CheckBox();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.cboxBegræns = new System.Windows.Forms.CheckBox();
+            this.cHeaderPicture = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControlMain.SuspendLayout();
             this.tabPageUdgift.SuspendLayout();
             this.tabPageIndtægt.SuspendLayout();
@@ -145,7 +146,7 @@
             // 
             // tabPageUdgift
             // 
-            this.tabPageUdgift.BackColor = System.Drawing.Color.Red;
+            this.tabPageUdgift.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(255)))), ((int)(((byte)(128)))), ((int)(((byte)(128)))));
             this.tabPageUdgift.Controls.Add(this.lblError_u);
             this.tabPageUdgift.Controls.Add(this.lblDato_u);
             this.tabPageUdgift.Controls.Add(this.datePicker_u);
@@ -248,7 +249,7 @@
             // 
             // tabPageIndtægt
             // 
-            this.tabPageIndtægt.BackColor = System.Drawing.Color.ForestGreen;
+            this.tabPageIndtægt.BackColor = System.Drawing.Color.YellowGreen;
             this.tabPageIndtægt.Controls.Add(this.lblError_i);
             this.tabPageIndtægt.Controls.Add(this.lblDato_i);
             this.tabPageIndtægt.Controls.Add(this.datePicker_i);
@@ -309,11 +310,12 @@
             this.cHeaderDato,
             this.cHeaderBeløb,
             this.cHeaderKategori,
-            this.cHeaderType});
+            this.cHeaderType,
+            this.cHeaderPicture});
             this.listPosteringer.FullRowSelect = true;
             this.listPosteringer.Location = new System.Drawing.Point(297, 23);
             this.listPosteringer.Name = "listPosteringer";
-            this.listPosteringer.Size = new System.Drawing.Size(395, 591);
+            this.listPosteringer.Size = new System.Drawing.Size(466, 591);
             this.listPosteringer.TabIndex = 7;
             this.listPosteringer.UseCompatibleStateImageBehavior = false;
             this.listPosteringer.View = System.Windows.Forms.View.Details;
@@ -362,6 +364,7 @@
             this.btnIndstillinger.TabIndex = 10;
             this.btnIndstillinger.Text = "Indstillinger";
             this.btnIndstillinger.UseVisualStyleBackColor = true;
+            this.btnIndstillinger.Click += new System.EventHandler(this.btnIndstillinger_Click);
             // 
             // btnGem
             // 
@@ -510,7 +513,7 @@
             // 
             // btnVisAlle
             // 
-            this.btnVisAlle.Location = new System.Drawing.Point(617, 0);
+            this.btnVisAlle.Location = new System.Drawing.Point(688, 0);
             this.btnVisAlle.Name = "btnVisAlle";
             this.btnVisAlle.Size = new System.Drawing.Size(75, 23);
             this.btnVisAlle.TabIndex = 30;
@@ -553,6 +556,35 @@
             this.gboxSøg.TabIndex = 32;
             this.gboxSøg.TabStop = false;
             // 
+            // cBoxMåned
+            // 
+            this.cBoxMåned.AutoSize = true;
+            this.cBoxMåned.Location = new System.Drawing.Point(82, 195);
+            this.cBoxMåned.Name = "cBoxMåned";
+            this.cBoxMåned.Size = new System.Drawing.Size(93, 17);
+            this.cBoxMåned.TabIndex = 34;
+            this.cBoxMåned.Text = "Denne måned";
+            this.cBoxMåned.UseVisualStyleBackColor = true;
+            this.cBoxMåned.CheckedChanged += new System.EventHandler(this.cBoxMåned_CheckedChanged);
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(0, 12);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(96, 13);
+            this.label6.TabIndex = 33;
+            this.label6.Text = "Indtægtskategorier";
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(144, 12);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(87, 13);
+            this.label5.TabIndex = 32;
+            this.label5.Text = "Udgiftskategorier";
+            // 
             // cboxBegræns
             // 
             this.cboxBegræns.AutoSize = true;
@@ -565,34 +597,9 @@
             this.cboxBegræns.UseVisualStyleBackColor = true;
             this.cboxBegræns.CheckedChanged += new System.EventHandler(this.cboxBegræns_CheckedChanged);
             // 
-            // label5
+            // cHeaderPicture
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(144, 12);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(87, 13);
-            this.label5.TabIndex = 32;
-            this.label5.Text = "Udgiftskategorier";
-            // 
-            // label6
-            // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(0, 12);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(96, 13);
-            this.label6.TabIndex = 33;
-            this.label6.Text = "Indtægtskategorier";
-            // 
-            // cBoxMåned
-            // 
-            this.cBoxMåned.AutoSize = true;
-            this.cBoxMåned.Location = new System.Drawing.Point(82, 195);
-            this.cBoxMåned.Name = "cBoxMåned";
-            this.cBoxMåned.Size = new System.Drawing.Size(93, 17);
-            this.cBoxMåned.TabIndex = 34;
-            this.cBoxMåned.Text = "Denne måned";
-            this.cBoxMåned.UseVisualStyleBackColor = true;
-            this.cBoxMåned.CheckedChanged += new System.EventHandler(this.cBoxMåned_CheckedChanged);
+            this.cHeaderPicture.Text = "Status";
             // 
             // Budget
             // 
@@ -600,7 +607,7 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
-            this.ClientSize = new System.Drawing.Size(697, 615);
+            this.ClientSize = new System.Drawing.Size(775, 615);
             this.Controls.Add(this.cboxBegræns);
             this.Controls.Add(this.gboxSøg);
             this.Controls.Add(this.btnVisAlle);
@@ -680,6 +687,7 @@
         private System.Windows.Forms.Label label6;
         private System.Windows.Forms.Label label5;
         private System.Windows.Forms.CheckBox cBoxMåned;
+        private System.Windows.Forms.ColumnHeader cHeaderPicture;
     }
 }
 

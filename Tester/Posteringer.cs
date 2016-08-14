@@ -5,12 +5,16 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+using System.IO;
 
 namespace BudgetProgram
 {
 
     class Posteringer
     {
+        static string i_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ikategoriFil.txt";
+        static string u_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ukategoriFil.txt";
+
         public static string valuta = " kr.";
         private Random rnd = new Random();
 
@@ -143,6 +147,37 @@ namespace BudgetProgram
             antal++;
             MakeListItem();
             Budget.AddToList(listItem);
+        }
+
+        public static void UpdateKategorier()
+        {
+            iKategorier = new List<string>();
+            StreamReader sr = new StreamReader(i_path);
+            string line = sr.ReadLine();
+
+            while (line != null)
+            {
+                iKategorier.Add(line);
+                line = sr.ReadLine();
+            }
+
+
+            sr.Close();
+
+            uKategorier = new List<string>();
+            sr = new StreamReader(u_path);
+            line = sr.ReadLine();
+
+            while (line != null)
+            {
+                uKategorier.Add(line);
+                line = sr.ReadLine();
+            }
+
+
+            sr.Close();
+
+            Budget.instance.ControlValuesToDefault();
         }
 
         //Laver et list item som har alle værdier til tabellen. Gemmes i en public readonly property

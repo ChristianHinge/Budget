@@ -18,6 +18,7 @@ namespace BudgetProgram
     {
         List<Posteringer> posteringer;
         public static Budget instance = null;
+        Indstillinger formIndstillinger;
 
         //Excel
         Excel.Application excelApp;
@@ -25,8 +26,9 @@ namespace BudgetProgram
 
         public Budget()
         {
-            instance = this;
             InitializeComponent();
+            instance = this;
+            Posteringer.UpdateKategorier();
             posteringer = new List<Posteringer>();
             Load_Posteringer();
         }
@@ -105,6 +107,7 @@ namespace BudgetProgram
 
             Posteringer postering = new Posteringer(beskrivelse, beløb, kategori, date, erUdgift);
             posteringer.Add(postering);
+            UpdatePoseringsLabel();
         }
 
 
@@ -112,6 +115,14 @@ namespace BudgetProgram
         //Sletter de valgte udgifter og opdatterer label (Sender = KNAP)
         private void SletPosteringer(object sender, EventArgs e)
         {
+            string prompt = "Er du sikker på at du ønsker at slette nedenstående postering(er)?\n";
+            //Finder navnene på de valgte list items
+            foreach (ListViewItem hej in listPosteringer.SelectedItems)
+                prompt += "\n" + hej.SubItems[0].Text;
+
+            if (!(MessageBox.Show(prompt, "Sletning af posteringer", MessageBoxButtons.OKCancel) == DialogResult.OK))
+                return;
+
             Posteringer postering;
             foreach (ListViewItem hej in listPosteringer.SelectedItems)
             {
@@ -125,23 +136,6 @@ namespace BudgetProgram
                 postering.Delete();
                 listPosteringer.Items.Remove(hej);
             }
-        }
-
-        //Finder og returnere en postering givet et listviewItem
-        private Posteringer GetPostering(ListViewItem item)
-        {
-            foreach (Posteringer postering in posteringer)
-                if (postering.ListItem == item)
-                    return postering;
-
-
-            //Hvis posteringen ikke findes - hvilket ikke burde ske - opstår der er en error
-            throw new System.InvalidOperationException("Item was not found, something went wrong");
-
-        }
-        public static void AddToList(ListViewItem posteringItem)
-        {
-            instance.listPosteringer.Items.Add(posteringItem);
         }
         
         #region Control Handeling
@@ -185,7 +179,7 @@ namespace BudgetProgram
             gboxSøg.Hide();
         }
 
-        private void ControlValuesToDefault()
+        public void ControlValuesToDefault()
         {
             cBoxKategori_i.Items.Clear();
             cBoxKategori_u.Items.Clear();
@@ -264,18 +258,25 @@ namespace BudgetProgram
         }
         #endregion
 
-        #region Testing
-        //TESTING PURPOSES
-
-        private void OpretSamplePosteringer(object sender, EventArgs e)
+        #region Liste Manipulation
+        //Finder og returnere en postering givet et listviewItem
+        private Posteringer GetPostering(ListViewItem item)
         {
-            for (int i = 0; i < 50; i++)
-                posteringer.Add(new Posteringer("Tilfældig postering nr. " + i.ToString()));
+            foreach (Posteringer postering in posteringer)
+                if (postering.ListItem == item)
+                    return postering;
+
+
+            //Hvis posteringen ikke findes - hvilket ikke burde ske - opstår der er en error
+            throw new System.InvalidOperationException("Item was not found, something went wrong");
+
+        }
+        public static void AddToList(ListViewItem posteringItem)
+        {
+            instance.listPosteringer.Items.Add(posteringItem);
+
         }
 
-        #endregion
-
-        
         private void btnSøg_Click(object sender, EventArgs e)
         {
             SøgPosteringer();
@@ -312,14 +313,23 @@ namespace BudgetProgram
             //gather settings
             foreach (var item in cListType.CheckedItems)
                 allowedTyper.Add(item.ToString());
+            string s = "";
 
             foreach (var item in cListKategorier_i.CheckedItems)
+            {
                 iallowedKategorier.Add(item.ToString());
+            }
+
 
             foreach (var item in cListKategorier_u.CheckedItems)
+            {
                 uallowedKategorier.Add(item.ToString());
- 
+            }
 
+            int i = 0;
+            int k = 0;
+            int v = 0;
+            int c = 0;
             //Cycle through all posteringer
             foreach (Posteringer postering in posteringer)
             {
@@ -342,23 +352,26 @@ namespace BudgetProgram
                 if (max != "")
                     if (postering.Pris > Mathh.stringToFloat(max))
                         continue;
-
-                if ((!cboxAlleDatoer.Checked) && (!cboxBegræns.Checked))
+                if ((!cboxAlleDatoer.Checked) && (!cBoxMåned.Checked))
                 {
                     if (DateTime.Compare(postering.dato, dateTimeSlut.Value) > 0)
                         continue;
                     else if (DateTime.Compare(postering.dato, dateTimeStart.Value) < 0)
                         continue;
                 }
-                else if (cboxBegræns.Checked)
+
+                else if (cBoxMåned.Checked)
                     if (postering.dato.Month != DateTime.Now.Month || postering.dato.Year != DateTime.Now.Year)
                         continue;
-
                 antalPosteringer++;
                 AddToList(postering.ListItem);
             }
             UpdatePoseringsLabel();
         }
+
+        #endregion
+
+        #region Controls til sortering
         private void checkBox1_CheckedChanged(object sender, EventArgs e)
         {
             if (cboxAlleDatoer.Checked)
@@ -430,6 +443,25 @@ namespace BudgetProgram
         private void cListType_SelectedIndexChanged(object sender, EventArgs e)
         {
             cListType.ClearSelected();
+        }
+        #endregion
+
+        #region Testing
+        //TESTING PURPOSES
+
+        private void OpretSamplePosteringer(object sender, EventArgs e)
+        {
+            for (int i = 0; i < 50; i++)
+                posteringer.Add(new Posteringer("Tilfældig postering nr. " + i.ToString()));
+            UpdatePoseringsLabel();
+        }
+        
+        #endregion
+
+        private void btnIndstillinger_Click(object sender, EventArgs e)
+        {
+            formIndstillinger = new Indstillinger();
+            formIndstillinger.ShowDialog();
         }
     }
 }

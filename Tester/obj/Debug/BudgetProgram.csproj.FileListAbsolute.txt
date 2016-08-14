@@ -2,7 +2,6 @@ C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\bin\Debug\Te
 C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\obj\Debug\Tester.exe
 C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Tester\Tester\obj\Debug\Tester.pdb
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.csprojResolveAssemblyReference.cache
-C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\Tester.Indstillinger.resources
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.csproj.GenerateResource.Cache
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\bin\Debug\BudgetProgram.exe.config
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\bin\Debug\BudgetProgram.exe
@@ -12,3 +11,5 @@ C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\Budg
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.pdb
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.Budget.resources
 C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.csproj.ResolveComReference.cache
+C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.Indstillinger.resources
+C:\Users\User\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.StringBox.resources
