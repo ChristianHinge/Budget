@@ -16,10 +16,6 @@ namespace BudgetProgram
         List<string> i_kategorier;
         List<string> u_kategorier;
 
-        string i_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ikategoriFil.txt";
-        string u_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ukategoriFil.txt";
-
-
         public Indstillinger()
         {
             InitializeComponent();
@@ -36,7 +32,7 @@ namespace BudgetProgram
         private void ReadKategorier()
         {
             i_kategorier = new List<string>();
-            StreamReader sr = new StreamReader(i_path);
+            StreamReader sr = new StreamReader(Budget.i_path);
             string line = sr.ReadLine();
 
             while (line != null)
@@ -50,7 +46,7 @@ namespace BudgetProgram
             sr.Close();
 
             u_kategorier = new List<string>();
-            sr = new StreamReader(u_path);
+            sr = new StreamReader(Budget.u_path);
             line = sr.ReadLine();
 
             while (line != null)
@@ -66,12 +62,12 @@ namespace BudgetProgram
 
         private void WriteKategorier()
         {
-            StreamWriter sw = new StreamWriter(i_path);
+            StreamWriter sw = new StreamWriter(Budget.i_path);
             foreach (string kat in i_kategorier)
                 sw.WriteLine(kat);
             sw.Close();
 
-            sw = new StreamWriter(u_path);
+            sw = new StreamWriter(Budget.u_path);
             foreach (string kat in u_kategorier)
                 sw.WriteLine(kat);
             sw.Close();

@@ -12,8 +12,10 @@ namespace BudgetProgram
 
     class Posteringer
     {
-        static string i_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ikategoriFil.txt";
-        static string u_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ukategoriFil.txt";
+        public static string dirPath;
+
+        public static string i_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ikategoriFil.txt";
+        public static string u_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ukategoriFil.txt";
 
         public static string valuta = " kr.";
         private Random rnd = new Random();
@@ -152,7 +154,7 @@ namespace BudgetProgram
         public static void UpdateKategorier()
         {
             iKategorier = new List<string>();
-            StreamReader sr = new StreamReader(i_path);
+            StreamReader sr = new StreamReader(Budget.i_path);
             string line = sr.ReadLine();
 
             while (line != null)
@@ -165,7 +167,7 @@ namespace BudgetProgram
             sr.Close();
 
             uKategorier = new List<string>();
-            sr = new StreamReader(u_path);
+            sr = new StreamReader(Budget.u_path);
             line = sr.ReadLine();
 
             while (line != null)

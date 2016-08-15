@@ -16,6 +16,11 @@ namespace BudgetProgram
 {
     public partial class Budget : Form
     {
+        public static string dirPath;
+        public static string i_path;
+        public static string u_path;
+        public static string posteringPath;
+
         List<Posteringer> posteringer;
         public static Budget instance = null;
         Indstillinger formIndstillinger;
@@ -27,6 +32,13 @@ namespace BudgetProgram
         public Budget()
         {
             InitializeComponent();
+            //dirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
+            dirPath = AppDomain.CurrentDomain.BaseDirectory;
+            dirPath = Path.GetFullPath(Path.Combine(dirPath, @"..\..\..\"));
+            posteringPath = dirPath + "//posteringFil.txt";
+            i_path = dirPath + "//iKategoriFil.txt";
+            u_path = dirPath + "//uKategoriFil.txt";
+
             instance = this;
             Posteringer.UpdateKategorier();
             posteringer = new List<Posteringer>();
@@ -226,9 +238,8 @@ namespace BudgetProgram
         }
         private void Gem()
         {
-            string path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\posteringFil.txt";
         
-            StreamWriter sw = new StreamWriter(path);
+            StreamWriter sw = new StreamWriter(posteringPath);
             foreach (Posteringer postering in posteringer)
             {
                 sw.WriteLine(postering.GetInfo());
@@ -237,7 +248,7 @@ namespace BudgetProgram
         }
         private void Load_Posteringer()
         {
-            StreamReader sr = new StreamReader("C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\posteringFil.txt");
+            StreamReader sr = new StreamReader(posteringPath);
             string line = sr.ReadLine();
             while (line != null)
             {
