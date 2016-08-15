@@ -10,16 +10,12 @@ using System.Windows.Forms;
 using System.IO;
 using Excel = Microsoft.Office.Interop.Excel;
 using System.Runtime.InteropServices;
-using System.Threading;
+using BudgetCore;
 
 namespace BudgetProgram
 {
     public partial class Budget : Form
     {
-        public static string dirPath;
-        public static string i_path;
-        public static string u_path;
-        public static string posteringPath;
 
         List<Posteringer> posteringer;
         public static Budget instance = null;
@@ -28,16 +24,12 @@ namespace BudgetProgram
         //Excel
         Excel.Application excelApp;
         Excel._Workbook excelWorkbook;
-
+        
         public Budget()
         {
             InitializeComponent();
             //dirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-            dirPath = AppDomain.CurrentDomain.BaseDirectory;
-            dirPath = Path.GetFullPath(Path.Combine(dirPath, @"..\..\..\"));
-            posteringPath = dirPath + "//posteringFil.txt";
-            i_path = dirPath + "//iKategoriFil.txt";
-            u_path = dirPath + "//uKategoriFil.txt";
+
 
             instance = this;
             Posteringer.UpdateKategorier();
@@ -233,31 +225,10 @@ namespace BudgetProgram
         #endregion
 
         #region Saving And Loading
+
         private void btnGem_Click(object sender, EventArgs e)
         {
-            Gem();
-        }
-        private void Gem()
-        {
-        
-            StreamWriter sw = new StreamWriter(posteringPath);
-            foreach (Posteringer postering in posteringer)
-            {
-                sw.WriteLine(postering.GetInfo());
-            }
-            sw.Close();
-        }
-        private void Load_Posteringer()
-        {
-            StreamReader sr = new StreamReader(posteringPath);
-            string line = sr.ReadLine();
-            while (line != null)
-            {
-                posteringer.Add(Unwrap(line));
-                line = sr.ReadLine();
-            }
-            sr.Close();
-
+            PosteringMangager.Gem();
         }
 
         //Omdanner en gemt string til et Posteringsobjekt
@@ -338,10 +309,6 @@ namespace BudgetProgram
                 uallowedKategorier.Add(item.ToString());
             }
 
-            int i = 0;
-            int k = 0;
-            int v = 0;
-            int c = 0;
             //Cycle through all posteringer
             foreach (Posteringer postering in posteringer)
             {
