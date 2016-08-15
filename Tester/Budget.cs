@@ -145,6 +145,7 @@ namespace BudgetProgram
                 else
                     throw new System.InvalidOperationException("Posteringen var hverken i indtægterlisten eller i udgifter listen");
 
+                UpdatePoseringsLabel();
                 postering.Delete();
                 listPosteringer.Items.Remove(hej);
             }

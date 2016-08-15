@@ -55,6 +55,7 @@
             this.cHeaderBeløb = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHeaderKategori = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.cHeaderType = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.cHeaderPicture = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnDelete = new System.Windows.Forms.Button();
             this.btnIndstillinger = new System.Windows.Forms.Button();
             this.btnGem = new System.Windows.Forms.Button();
@@ -80,7 +81,6 @@
             this.label6 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.cboxBegræns = new System.Windows.Forms.CheckBox();
-            this.cHeaderPicture = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.tabControlMain.SuspendLayout();
             this.tabPageUdgift.SuspendLayout();
             this.tabPageIndtægt.SuspendLayout();
@@ -193,6 +193,7 @@
             // 
             // cBoxKategori_u
             // 
+            this.cBoxKategori_u.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxKategori_u.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cBoxKategori_u.FormattingEnabled = true;
             this.cBoxKategori_u.Location = new System.Drawing.Point(184, 11);
@@ -296,6 +297,7 @@
             // 
             // cBoxKategori_i
             // 
+            this.cBoxKategori_i.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cBoxKategori_i.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cBoxKategori_i.FormattingEnabled = true;
             this.cBoxKategori_i.Location = new System.Drawing.Point(161, 11);
@@ -345,6 +347,10 @@
             // cHeaderType
             // 
             this.cHeaderType.Text = "Type";
+            // 
+            // cHeaderPicture
+            // 
+            this.cHeaderPicture.Text = "Status";
             // 
             // btnDelete
             // 
@@ -596,10 +602,6 @@
             this.cboxBegræns.Text = "Begræns Visning";
             this.cboxBegræns.UseVisualStyleBackColor = true;
             this.cboxBegræns.CheckedChanged += new System.EventHandler(this.cboxBegræns_CheckedChanged);
-            // 
-            // cHeaderPicture
-            // 
-            this.cHeaderPicture.Text = "Status";
             // 
             // Budget
             // 
