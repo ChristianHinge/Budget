@@ -72,8 +72,8 @@ namespace BudgetProgram
             foreach (string kat in u_kategorier)
                 sw.WriteLine(kat);
             sw.Close();
-
-            Posteringer.UpdateKategorier();
+            PosteringManager.UpdateKategorier();
+            Budget.instance.ControlValuesToDefault();
         }
 
         private void btnNy_Click(object sender, EventArgs e)

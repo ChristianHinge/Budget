@@ -23,14 +23,18 @@ namespace BudgetCore
 
         public static List<string> iKategorier { get; private set; }
         public static List<string> uKategorier { get; private set; }
-
+        public static int AntalPosteringer
+        {
+            get
+            {
+                return Postering.Antal;
+            }
+        }
 
 
         public PosteringManager()
         {
-            //Kategorier
-            iKategorier = new List<string> { "Andet", "Arbejde", "Gaver I", "SU" };
-            uKategorier = new List<string> { "Abonnementer", "Andet / Store Køb", "Gaver", "Hverdag", "Mad", "Sjov", "Skole", "Telefon", "Tøj" };
+            posteringer = new List<Postering>();
 
             //Paths
             dirPath = AppDomain.CurrentDomain.BaseDirectory;
@@ -38,6 +42,15 @@ namespace BudgetCore
             posteringPath = dirPath + "//posteringFil.txt";
             i_path = dirPath + "//iKategoriFil.txt";
             u_path = dirPath + "//uKategoriFil.txt";
+
+
+
+            //Kategorier
+            iKategorier = new List<string> { "Andet", "Arbejde", "Gaver I", "SU" };
+            uKategorier = new List<string> { "Abonnementer", "Andet / Store Køb", "Gaver", "Hverdag", "Mad", "Sjov", "Skole", "Telefon", "Tøj" };
+            UpdateKategorier();
+
+
 
             //Load posteringer
             Load();
@@ -71,7 +84,7 @@ namespace BudgetCore
 
 
 
-        //Sletter de valgte udgifter fra posteringListe
+        /*
         private void SletPosteringer(List<Postering> sletListe)
         {
             foreach (Postering post in sletListe)
@@ -84,7 +97,7 @@ namespace BudgetCore
                 post.Delete();
             }
         }
-
+        */
         #region Saving And Loading
 
         public void Gem()
@@ -140,6 +153,7 @@ namespace BudgetCore
         public void SletPostering(ListViewItem postItem)
         {
             Postering postering = GetPostering(postItem);
+            posteringer.Remove(postering);
             postering.Delete();
         }
 
@@ -154,9 +168,13 @@ namespace BudgetCore
         }
 
 
-        public List<ListViewItem> SøgPosteringer(List<string> tilladte_u_kat, List<string> tilladte_i_kat, List<string> tilladte_typer, float min, float max, int datoSearch, DateTime minDato, DateTime maxDato)
+        public List<ListViewItem> SøgPosteringer(List<string> tilladte_u_kat, List<string> tilladte_i_kat, List<string> tilladte_typer, string min, string max, int datoSearch, DateTime minDato, DateTime maxDato)
         {
             List<ListViewItem> søgResultat = new List<ListViewItem>();
+
+            float i_min = Mathh.stringToFloat(min);
+            float i_max = Mathh.stringToFloat(max);
+
 
             //Cycle through all posteringer
             foreach (Postering postering in posteringer)
@@ -174,13 +192,13 @@ namespace BudgetCore
                 else
                     continue;
 
-                if (postering.Pris < min)
+                if (postering.Pris < i_min)
                     continue;
 
-                if (postering.Pris > max)
+                if (postering.Pris > i_max)
                     continue;
 
-                if (datoSearch == 3)
+                if (datoSearch == 3)    //Specifikt
                 {
                     if (DateTime.Compare(postering.dato, maxDato) > 0)
                         continue;
@@ -188,7 +206,7 @@ namespace BudgetCore
                         continue;
                 }
 
-                else if (datoSearch == 2)
+                else if (datoSearch == 2)   //Måned
                     if (postering.dato.Month != DateTime.Now.Month || postering.dato.Year != DateTime.Now.Year)
                         continue;
 
@@ -203,10 +221,14 @@ namespace BudgetCore
         #region Testing
         //TESTING PURPOSES
 
-        private void OpretSamplePosteringer(object sender, EventArgs e)
+        public void OpretSamplePosteringer()
         {
+
             for (int i = 0; i < 50; i++)
+            {
                 posteringer.Add(new Postering("Tilfældig postering nr. " + i.ToString()));
+            }
+
         }
 
         #endregion

@@ -17,7 +17,6 @@ namespace BudgetProgram
     public partial class Budget : Form
     {
         PosteringManager manager = new PosteringManager();
-        List<Posteringer> posteringer;
         public static Budget instance = null;
         Indstillinger formIndstillinger;
 
@@ -29,8 +28,6 @@ namespace BudgetProgram
         {
             InitializeComponent();
             instance = this;
-            Posteringer.UpdateKategorier();
-            posteringer = new List<Posteringer>();
         }
 
         private void Form1_Load(object sender, EventArgs e)
@@ -45,47 +42,32 @@ namespace BudgetProgram
         //Opret postering BLIVER KALDT AF DE TO OPRET KNAPPER
         private void OpretPostering(object sender, EventArgs e)
         {
-
+            int status;
             //Hvis intægtknappen trykkes oprettes en indtægt
             if (sender == btnOpret_i)
             {
-                if (manager.OpretPostering(txtBeløb_i.Text, txtBeløb_i.Text, cBoxKategori_i.Text, datePicker_i.Value, false) == 0)
-                {
-                    VisAllePosteringer()
-                }
+                status = manager.OpretPostering(txtBeskrivelse_i.Text, txtBeløb_i.Text, cBoxKategori_i.Text, datePicker_i.Value, false);
+
+                if (status == 0)
+                    VisAllePosteringer();
+
+                else
+                    MessageBox.Show(status.ToString());
             }
 
             //Hvis udgiftknappen trykkes oprettes en udgift
             else 
             {
-                beskrivelse = txtBeskrivelse_u.Text;
-                beskrivelse = beskrivelse.Trim(' ');
-                beløb = Mathh.Round(Mathh.stringToFloat(txtBeløb_u.Text), 2);
-                kategori = cBoxKategori_u.SelectedItem.ToString();
-                date = datePicker_u.Value;
-                erUdgift = true;
-                if (beløb <= 0)
-                {
+                status = manager.OpretPostering(txtBeskrivelse_u.Text, txtBeløb_u.Text, cBoxKategori_u.Text, datePicker_u.Value, true);
 
-                    lblError_u.Text = "*Kun positive beløb accepteres";
-                    return;
-                }
-                if (beskrivelse == "")
-                {
-                    lblError_u.Text = "*Mangler beskrivelse";
-                    txtBeskrivelse_u.Text = "";
-                    return;
-                }
-                if (beskrivelse.Contains(";"))
-                {
-                    lblError_u.Text = "*Ulovligt bogstav: ';'";
-                    return;
-                }
-                lblError_u.Text = "";
+                if (status == 0)
+                    VisAllePosteringer();
+
+                else
+                    MessageBox.Show(status.ToString());
             }
 
-            Posteringer postering = new Posteringer(beskrivelse, beløb, kategori, date, erUdgift);
-            posteringer.Add(postering);
+
             UpdatePoseringsLabel();
         }
 
@@ -99,22 +81,14 @@ namespace BudgetProgram
             foreach (ListViewItem hej in listPosteringer.SelectedItems)
                 prompt += "\n" + hej.SubItems[0].Text;
 
-            if (!(MessageBox.Show(prompt, "Sletning af posteringer", MessageBoxButtons.OKCancel) == DialogResult.OK))
-                return;
-
-            Posteringer postering;
-            foreach (ListViewItem hej in listPosteringer.SelectedItems)
+            if (MessageBox.Show(prompt, "Sletning af posteringer", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
-                postering = GetPostering(hej);
+                foreach (ListViewItem post in listPosteringer.SelectedItems)
+                    manager.SletPostering(post);
 
-                if (posteringer.Contains(postering))
-                    posteringer.Remove(postering);
-                else
-                    throw new System.InvalidOperationException("Posteringen var hverken i indtægterlisten eller i udgifter listen");
 
                 UpdatePoseringsLabel();
-                postering.Delete();
-                listPosteringer.Items.Remove(hej);
+                VisAllePosteringer();
             }
         }
         
@@ -167,7 +141,7 @@ namespace BudgetProgram
             cListKategorier_u.Items.Clear();
 
             //Lists indtægter
-            foreach (string kategori in Posteringer.iKategorier)
+            foreach (string kategori in PosteringManager.iKategorier)
             {
                 cBoxKategori_i.Items.Add(kategori);
                 cListKategorier_i.Items.Add(kategori, true);
@@ -175,7 +149,7 @@ namespace BudgetProgram
             cBoxKategori_i.SelectedIndex = 0;
 
             //Lists udgifter
-            foreach (string kategori in Posteringer.uKategorier)
+            foreach (string kategori in PosteringManager.uKategorier)
             {
                 cBoxKategori_u.Items.Add(kategori);
                 cListKategorier_u.Items.Add(kategori, true);
@@ -210,17 +184,6 @@ namespace BudgetProgram
 
         #region Liste Manipulation
         //Finder og returnere en postering givet et listviewItem
-        private Posteringer GetPostering(ListViewItem item)
-        {
-            foreach (Posteringer postering in posteringer)
-                if (postering.ListItem == item)
-                    return postering;
-
-
-            //Hvis posteringen ikke findes - hvilket ikke burde ske - opstår der er en error
-            throw new System.InvalidOperationException("Item was not found, something went wrong");
-
-        }
 
         private void btnSøg_Click(object sender, EventArgs e)
         {
@@ -230,13 +193,14 @@ namespace BudgetProgram
         private void SletAllePosteringer()
         {
             listPosteringer.Items.Clear();
+            UpdatePoseringsLabel();
         }
         private void VisAllePosteringer()
         {
             SletAllePosteringer();
 
             foreach (ListViewItem postering in manager.GetAllePosteringer())
-                list
+                listPosteringer.Items.Add(postering);
 
             UpdatePoseringsLabel();
  
@@ -247,68 +211,45 @@ namespace BudgetProgram
         {
             SletAllePosteringer();
 
+            //Parametrer decleration
             List<string> uallowedKategorier = new List<string>();
             List<string> iallowedKategorier = new List<string>();
             List<string> allowedTyper = new List<string>();
             string min = txtBoxMin.Text.Trim();
             string max = txtBoxMax.Text.Trim();
+            DateTime maxDato;
+            DateTime minDato;
+            int datoSearchType = 1;
 
-            int antalPosteringer = 0;
-
-            //gather settings
+            //Parameter Assignment
             foreach (var item in cListType.CheckedItems)
                 allowedTyper.Add(item.ToString());
-            string s = "";
-
-            foreach (var item in cListKategorier_i.CheckedItems)
-            {
-                iallowedKategorier.Add(item.ToString());
-            }
-
 
             foreach (var item in cListKategorier_u.CheckedItems)
-            {
                 uallowedKategorier.Add(item.ToString());
-            }
 
-            //Cycle through all posteringer
-            foreach (Posteringer postering in posteringer)
-            {
-                if (allowedTyper.Contains("Udgift") && postering.erUdgift == true)
-                {
-                    if (!(uallowedKategorier.Contains(postering.kategori)))
-                        continue;
-                }
-                else if (allowedTyper.Contains("Indtægt") && postering.erUdgift == false)
-                {
-                    if (!(iallowedKategorier.Contains(postering.kategori)))
-                        continue;
-                }
-                else
-                    continue;
+            foreach (var item in cListKategorier_i.CheckedItems)
+                iallowedKategorier.Add(item.ToString());
 
-                if (min != "")
-                    if (postering.Pris < Mathh.stringToFloat(min))
-                        continue;
-                if (max != "")
-                    if (postering.Pris > Mathh.stringToFloat(max))
-                        continue;
-                if ((!cboxAlleDatoer.Checked) && (!cBoxMåned.Checked))
-                {
-                    if (DateTime.Compare(postering.dato, dateTimeSlut.Value) > 0)
-                        continue;
-                    else if (DateTime.Compare(postering.dato, dateTimeStart.Value) < 0)
-                        continue;
-                }
+            if ((!cboxAlleDatoer.Checked) && (!cBoxMåned.Checked))
+                datoSearchType = 3;
 
-                else if (cBoxMåned.Checked)
-                    if (postering.dato.Month != DateTime.Now.Month || postering.dato.Year != DateTime.Now.Year)
-                        continue;
-                antalPosteringer++;
-                AddToList(postering.ListItem);
-            }
+            else if (cBoxMåned.Checked)
+                datoSearchType = 2;
+
+            else
+                datoSearchType = 1;
+
+            minDato = dateTimeStart.Value;
+            maxDato = dateTimeSlut.Value;
+
+            foreach (ListViewItem postering in manager.SøgPosteringer(uallowedKategorier, iallowedKategorier, allowedTyper, min, max, datoSearchType,minDato,maxDato))
+                listPosteringer.Items.Add(postering);
+
             UpdatePoseringsLabel();
         }
+            
+        
 
         #endregion
 
@@ -358,7 +299,7 @@ namespace BudgetProgram
 
         private void UpdatePoseringsLabel()
         {
-            lblPosteringer.Text = "Antal posteringer vist: " + listPosteringer.Items.Count.ToString() + " ud af " + Posteringer.Antal;
+            lblPosteringer.Text = "Antal posteringer vist: " + listPosteringer.Items.Count.ToString() + " ud af " + PosteringManager.AntalPosteringer;
         }
 
 
@@ -392,9 +333,8 @@ namespace BudgetProgram
 
         private void OpretSamplePosteringer(object sender, EventArgs e)
         {
-            for (int i = 0; i < 50; i++)
-                posteringer.Add(new Posteringer("Tilfældig postering nr. " + i.ToString()));
-            UpdatePoseringsLabel();
+            manager.OpretSamplePosteringer();
+            VisAllePosteringer();
         }
         
         #endregion
@@ -406,4 +346,5 @@ namespace BudgetProgram
         }
     }
 }
+
 
