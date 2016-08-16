@@ -9,6 +9,8 @@
     <Import_RootNamespace>BudgetCore</Import_RootNamespace>
   </PropertyGroup>
   <ItemGroup>
-    <Compile Include="$(MSBuildThisFileDirectory)Class1.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Mathh.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)Postering.cs" />
+    <Compile Include="$(MSBuildThisFileDirectory)PosteringManager.cs" />
   </ItemGroup>
 </Project>

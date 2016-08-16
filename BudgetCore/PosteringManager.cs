@@ -38,10 +38,13 @@ namespace BudgetCore
             posteringPath = dirPath + "//posteringFil.txt";
             i_path = dirPath + "//iKategoriFil.txt";
             u_path = dirPath + "//uKategoriFil.txt";
+
+            //Load posteringer
+            Load();
         }
 
         //Opret postering
-        private int OpretPostering(string beskrivelse, string beløb, string kategori, DateTime dato, bool erUdgift)
+        public int OpretPostering(string beskrivelse, string beløb, string kategori, DateTime dato, bool erUdgift)
         {
             float int_beløb;
             beskrivelse = beskrivelse.Trim(' ');
@@ -84,7 +87,7 @@ namespace BudgetCore
 
         #region Saving And Loading
 
-        private void Gem()
+        public void Gem()
         {
 
             StreamWriter sw = new StreamWriter(posteringPath);

@@ -143,34 +143,7 @@ namespace BudgetCore
             MakeListItem();
         }
 
-        public static void UpdateKategorier()
-        {
-            iKategorier = new List<string>();
-            StreamReader sr = new StreamReader(PosteringManager.i_path);
-            string line = sr.ReadLine();
 
-            while (line != null)
-            {
-                iKategorier.Add(line);
-                line = sr.ReadLine();
-            }
-
-
-            sr.Close();
-
-            uKategorier = new List<string>();
-            sr = new StreamReader(PosteringManager.u_path);
-            line = sr.ReadLine();
-
-            while (line != null)
-            {
-                uKategorier.Add(line);
-                line = sr.ReadLine();
-            }
-
-
-            sr.Close();
-        }
 
         //Laver et list item som har alle værdier til tabellen. Gemmes i en public readonly property
         private void MakeListItem()

@@ -16,7 +16,7 @@ namespace BudgetProgram
 {
     public partial class Budget : Form
     {
-
+        PosteringManager manager = new PosteringManager();
         List<Posteringer> posteringer;
         public static Budget instance = null;
         Indstillinger formIndstillinger;
@@ -28,56 +28,31 @@ namespace BudgetProgram
         public Budget()
         {
             InitializeComponent();
-            //dirPath = Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location);
-
-
             instance = this;
             Posteringer.UpdateKategorier();
             posteringer = new List<Posteringer>();
-            Load_Posteringer();
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
+            foreach (ListViewItem item in manager.GetAllePosteringer())
+                listPosteringer.Items.Add(item);
+
             PrepareControls();
-            SøgPosteringer();
+
         }
 
         //Opret postering BLIVER KALDT AF DE TO OPRET KNAPPER
         private void OpretPostering(object sender, EventArgs e)
         {
-            string beskrivelse;
-            float beløb;
-            string kategori;
-            DateTime date;
-            bool erUdgift;
 
             //Hvis intægtknappen trykkes oprettes en indtægt
             if (sender == btnOpret_i)
             {
-                beskrivelse = txtBeskrivelse_i.Text;
-                beskrivelse = beskrivelse.Trim(' ');
-                beløb = Mathh.Round(Mathh.stringToFloat(txtBeløb_i.Text),2);
-                kategori = cBoxKategori_i.SelectedItem.ToString();
-                date = datePicker_i.Value;
-                erUdgift = false;
-                if (beløb <= 0)
+                if (manager.OpretPostering(txtBeløb_i.Text, txtBeløb_i.Text, cBoxKategori_i.Text, datePicker_i.Value, false) == 0)
                 {
-                    lblError_i.Text = "*Kun positive beløb accepteres";
-                    return;
+                    VisAllePosteringer()
                 }
-                if (beskrivelse == "")
-                {
-                    lblError_i.Text = "*Mangler beskrivelse";
-                    txtBeskrivelse_i.Text = "";
-                    return;
-                }
-                if (beskrivelse.Contains(";"))
-                {
-                    lblError_i.Text = "*Ulovligt bogstav: ';'";
-                    return;
-                }
-                lblError_i.Text = "";
             }
 
             //Hvis udgiftknappen trykkes oprettes en udgift
@@ -228,17 +203,9 @@ namespace BudgetProgram
 
         private void btnGem_Click(object sender, EventArgs e)
         {
-            PosteringMangager.Gem();
+            manager.Gem();
         }
 
-        //Omdanner en gemt string til et Posteringsobjekt
-        private Posteringer Unwrap(string input)
-        {
-            char semicolon = ';';
-            string[] args = input.Split(semicolon);
-            return (new Posteringer(args[0], Mathh.stringToFloat(args[1]), args[2], Convert.ToDateTime(args[3]), Convert.ToBoolean(args[4])));
-
-        }
         #endregion
 
         #region Liste Manipulation
@@ -254,11 +221,6 @@ namespace BudgetProgram
             throw new System.InvalidOperationException("Item was not found, something went wrong");
 
         }
-        public static void AddToList(ListViewItem posteringItem)
-        {
-            instance.listPosteringer.Items.Add(posteringItem);
-
-        }
 
         private void btnSøg_Click(object sender, EventArgs e)
         {
@@ -267,17 +229,17 @@ namespace BudgetProgram
 
         private void SletAllePosteringer()
         {
-            foreach (ListViewItem item in listPosteringer.Items)
-                item.Remove();
+            listPosteringer.Items.Clear();
         }
         private void VisAllePosteringer()
         {
             SletAllePosteringer();
-            foreach (Posteringer postering in posteringer)
-            {
-                listPosteringer.Items.Add(postering.ListItem);
-            }
+
+            foreach (ListViewItem postering in manager.GetAllePosteringer())
+                list
+
             UpdatePoseringsLabel();
+ 
 
         }
 
