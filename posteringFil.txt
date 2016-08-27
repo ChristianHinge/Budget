@@ -2,26 +2,11 @@ Tilfældig postering nr. 0;1582;Mad;27-01-2016 00:00:00;False
 Tilfældig postering nr. 1;1684;321;27-01-2016 00:00:00;True
 Tilfældig postering nr. 2;1861;Løn;27-01-2016 00:00:00;False
 Tilfældig postering nr. 3;1929;hej;27-01-2016 00:00:00;True
-Tilfældig postering nr. 4;1822;Mad;27-01-2016 00:00:00;False
-Tilfældig postering nr. 5;1060;Løn;27-01-2016 00:00:00;False
-Tilfældig postering nr. 6;959;Løn;27-01-2016 00:00:00;False
-Tilfældig postering nr. 7;157;321;02-08-2016 00:00:00;True
-Tilfældig postering nr. 8;1517;321;02-08-2016 00:00:00;True
-Tilfældig postering nr. 9;1629;Mad;02-08-2016 00:00:00;False
-Tilfældig postering nr. 10;235;hej;02-08-2016 00:00:00;True
-Tilfældig postering nr. 20;315;hej;30-05-2016 00:00:00;True
-Tilfældig postering nr. 21;267;hej;30-05-2016 00:00:00;True
-Tilfældig postering nr. 22;1170;hej;30-05-2016 00:00:00;True
-Tilfældig postering nr. 23;1928;Løn;30-05-2016 00:00:00;False
-Tilfældig postering nr. 38;1939;Løn;06-06-2016 00:00:00;False
-Tilfældig postering nr. 39;1699;Mad;06-06-2016 00:00:00;False
-Tilfældig postering nr. 40;230;Løn;06-06-2016 00:00:00;False
-Tilfældig postering nr. 41;357;321;06-06-2016 00:00:00;True
-Tilfældig postering nr. 42;852;321;14-01-2016 00:00:00;True
-Tilfældig postering nr. 43;1355;Løn;14-01-2016 00:00:00;False
-Tilfældig postering nr. 44;970;hej;14-01-2016 00:00:00;True
-Tilfældig postering nr. 45;1816;Mad;14-01-2016 00:00:00;False
-Tilfældig postering nr. 46;181;hej;14-01-2016 00:00:00;True
-Tilfældig postering nr. 47;480;hej;04-04-2016 00:00:00;True
-Tilfældig postering nr. 48;399;hej;04-04-2016 00:00:00;True
-Tilfældig postering nr. 49;627;hej;04-04-2016 00:00:00;True
+fdf;4;Andet;16-08-2016 22:02:40;False
+fdf;123123;SU;19-08-2016 22:02:40;False
+fdf;23;Andet;16-08-2016 22:03:08;False
+fdf;23;Andet;16-08-2016 22:03:08;False
+fdf;23;Andet;16-08-2016 22:03:08;False
+heh;23;Andet;16-08-2016 22:03:08;False
+heh;23;Andet;16-08-2016 22:03:08;False
+heh;23;Andet;16-08-2016 22:03:08;False

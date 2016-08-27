@@ -8,6 +8,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.IO;
+using BudgetCore;
 
 namespace BudgetProgram
 {
@@ -32,7 +33,7 @@ namespace BudgetProgram
         private void ReadKategorier()
         {
             i_kategorier = new List<string>();
-            StreamReader sr = new StreamReader(Budget.i_path);
+            StreamReader sr = new StreamReader(PosteringManager.i_path);
             string line = sr.ReadLine();
 
             while (line != null)
@@ -46,7 +47,7 @@ namespace BudgetProgram
             sr.Close();
 
             u_kategorier = new List<string>();
-            sr = new StreamReader(Budget.u_path);
+            sr = new StreamReader(PosteringManager.u_path);
             line = sr.ReadLine();
 
             while (line != null)
@@ -62,17 +63,17 @@ namespace BudgetProgram
 
         private void WriteKategorier()
         {
-            StreamWriter sw = new StreamWriter(Budget.i_path);
+            StreamWriter sw = new StreamWriter(PosteringManager.i_path);
             foreach (string kat in i_kategorier)
                 sw.WriteLine(kat);
             sw.Close();
 
-            sw = new StreamWriter(Budget.u_path);
+            sw = new StreamWriter(PosteringManager.u_path);
             foreach (string kat in u_kategorier)
                 sw.WriteLine(kat);
             sw.Close();
-
-            Posteringer.UpdateKategorier();
+            PosteringManager.UpdateKategorier();
+            Budget.instance.ControlValuesToDefault();
         }
 
         private void btnNy_Click(object sender, EventArgs e)

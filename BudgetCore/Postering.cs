@@ -6,25 +6,18 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 using System.IO;
-using BudgetProgram;
 
-namespace BudgetProgramGammel
+
+namespace BudgetCore
 {
-
-    class Posteringer
+    class Postering
     {
-        public static string dirPath;
-
-        public static string i_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ikategoriFil.txt";
-        public static string u_path = "C:\\Users\\User\\Documents\\Visual Studio 2015\\Projects\\Budget\\ukategoriFil.txt";
 
         public static string valuta = " kr.";
         private Random rnd = new Random();
 
-        //Liste med udgift og indtægt kategorier
-        public static List<string> iKategorier = new List<string> { "Andet", "Arbejde", "Gaver I", "SU"};
-        public static List<string> uKategorier = new List<string> { "Abonnementer", "Andet / Store Køb", "Gaver", "Hverdag", "Mad", "Sjov", "Skole", "Telefon", "Tøj"};
-        
+
+
         //Private posteringsvariabler
         public string kategori { get; private set; }
         public DateTime dato { get; private set; }
@@ -91,12 +84,12 @@ namespace BudgetProgramGammel
             get
             {
                 return beskrivelse;
-            } 
+            }
         }
 
 
         //DECLARATION giver værdier til alle fields =======================================================================================================================
-        public Posteringer(string navn, float beløb, string kat, DateTime date, bool udgift)
+        public Postering(string navn, float beløb, string kat, DateTime date, bool udgift)
         {
             pris = beløb;
             beskrivelse = navn;
@@ -115,11 +108,10 @@ namespace BudgetProgramGammel
             }
             antal++;
             MakeListItem();
-            Budget.AddToList(listItem);
         }
 
         //Opret tilfældig postering
-        public Posteringer(string navn)
+        public Postering(string navn)
         {
             Thread.Sleep(2);
             int Seed = (int)DateTime.Now.Ticks;
@@ -133,15 +125,15 @@ namespace BudgetProgramGammel
             {
                 erUdgift = true;
                 sumUdgift += pris;
-                n = rnd.Next(0, uKategorier.Count);
-                kategori = uKategorier[n];
+                n = rnd.Next(0, PosteringManager.uKategorier.Count);
+                kategori = PosteringManager.uKategorier[n];
             }
             else
             {
                 erUdgift = false;
                 sumIndtægt += pris;
-                n = rnd.Next(0, iKategorier.Count);
-                kategori = iKategorier[n];
+                n = rnd.Next(0, PosteringManager.iKategorier.Count);
+                kategori = PosteringManager.iKategorier[n];
             }
 
             dato = RandomDay();
@@ -149,39 +141,9 @@ namespace BudgetProgramGammel
 
             antal++;
             MakeListItem();
-            Budget.AddToList(listItem);
         }
 
-        public static void UpdateKategorier()
-        {
-            iKategorier = new List<string>();
-            StreamReader sr = new StreamReader(Budget.i_path);
-            string line = sr.ReadLine();
 
-            while (line != null)
-            {
-                iKategorier.Add(line);
-                line = sr.ReadLine();
-            }
-
-
-            sr.Close();
-
-            uKategorier = new List<string>();
-            sr = new StreamReader(Budget.u_path);
-            line = sr.ReadLine();
-
-            while (line != null)
-            {
-                uKategorier.Add(line);
-                line = sr.ReadLine();
-            }
-
-
-            sr.Close();
-
-            Budget.instance.ControlValuesToDefault();
-        }
 
         //Laver et list item som har alle værdier til tabellen. Gemmes i en public readonly property
         private void MakeListItem()
@@ -207,9 +169,9 @@ namespace BudgetProgramGammel
                 sumIndtægt -= pris;
             antal--;
         }
-        public string GetInfo()
+        public string GetSaveString()
         {
-            return (Beskrivelse + ";" + pris.ToString() + ";"  + kategori + ";" + dato.ToString() + ";" + erUdgift.ToString());
+            return (Beskrivelse + ";" + pris.ToString() + ";" + kategori + ";" + dato.ToString() + ";" + erUdgift.ToString());
         }
 
         private Random gen = new Random();
@@ -220,6 +182,4 @@ namespace BudgetProgramGammel
             return start.AddDays(gen.Next(range));
         }
     }
-
 }
-
