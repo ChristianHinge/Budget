@@ -38,7 +38,7 @@ namespace BudgetCore
 
             //Paths
             dirPath = AppDomain.CurrentDomain.BaseDirectory;
-            dirPath = Path.GetFullPath(Path.Combine(dirPath, @"..\..\..\"));
+            dirPath = Path.GetFullPath(Path.Combine(dirPath, @"..\..\..\Data\"));
             posteringPath = dirPath + "//posteringFil.txt";
             i_path = dirPath + "//iKategoriFil.txt";
             u_path = dirPath + "//uKategoriFil.txt";
