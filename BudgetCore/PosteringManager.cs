@@ -3,18 +3,22 @@ using System.Collections.Generic;
 using System.Text;
 using System.IO;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace BudgetCore
 {
     class PosteringManager
     {
+        //Singleton
+        public static PosteringManager instance;
+
         //IO Paths
 
-        public static string dirPath;
-        public static string i_path;
-        public static string u_path;
-        public static string posteringPath;
-
+        public static string dataDirectory { get; private set; } 
+        public static string i_kategori_fil { get; private set; }
+        public static string u_kategori_fil { get; private set; }
+        public static string posteringPath { get; private set; }
+        public static FileStream fs;
         //Postering liste
 
         List<Postering> posteringer;
@@ -34,21 +38,21 @@ namespace BudgetCore
 
         public PosteringManager()
         {
+            instance = this;
             posteringer = new List<Postering>();
 
             //Paths
-            dirPath = AppDomain.CurrentDomain.BaseDirectory;
-            dirPath = Path.GetFullPath(Path.Combine(dirPath, @"..\..\..\Data\"));
-            posteringPath = dirPath + "//posteringFil.txt";
-            i_path = dirPath + "//iKategoriFil.txt";
-            u_path = dirPath + "//uKategoriFil.txt";
-
+            dataDirectory = AppDomain.CurrentDomain.BaseDirectory;
+            dataDirectory = Path.GetFullPath(Path.Combine(dataDirectory, @"Data\"));
+            posteringPath = dataDirectory + "//posteringFil.txt";
+            i_kategori_fil = dataDirectory + "//iKategoriFil.txt";
+            u_kategori_fil = dataDirectory + "//uKategoriFil.txt";
 
 
             //Kategorier
-            iKategorier = new List<string> { "Andet", "Arbejde", "Gaver I", "SU" };
-            uKategorier = new List<string> { "Abonnementer", "Andet / Store Køb", "Gaver", "Hverdag", "Mad", "Sjov", "Skole", "Telefon", "Tøj" };
-            UpdateKategorier();
+            //iKategorier = new List<string> { "Andet", "Arbejde", "Gaver I", "SU" };
+            //uKategorier = new List<string> { "Abonnementer", "Andet / Store Køb", "Gaver", "Hverdag", "Mad", "Sjov", "Skole", "Telefon", "Tøj" };
+            LoadKategorier();
 
 
 
@@ -82,27 +86,11 @@ namespace BudgetCore
 
         }
 
-
-
-        /*
-        private void SletPosteringer(List<Postering> sletListe)
-        {
-            foreach (Postering post in sletListe)
-            {
-                if (posteringer.Contains(post))
-                    posteringer.Remove(post);
-                else
-                    throw new System.InvalidOperationException("Posteringen var hverken i indtægterlisten eller i udgifter listen");
-
-                post.Delete();
-            }
-        }
-        */
         #region Saving And Loading
 
         public void Gem()
         {
-
+            CheckProgramExistence();
             StreamWriter sw = new StreamWriter(posteringPath);
 
             foreach (Postering postering in posteringer)
@@ -114,6 +102,7 @@ namespace BudgetCore
 
         private void Load()
         {
+            CheckProgramExistence();
             StreamReader sr = new StreamReader(posteringPath);
             string line = sr.ReadLine();
 
@@ -129,9 +118,94 @@ namespace BudgetCore
         //Omdanner en gemt string til et Posteringsobjekt
         private Postering Unwrap(string input)
         {
-            char semicolon = ';';
-            string[] args = input.Split(semicolon);
+            string[] args = input.Split(';');
             return (new Postering(args[0], Mathh.stringToFloat(args[1]), args[2], Convert.ToDateTime(args[3]), Convert.ToBoolean(args[4])));
+
+        }
+
+        public void WriteKategorier(List<string> nye_iKategorier, List<string> nye_uKategorier)
+        {
+            StreamWriter sw = new StreamWriter(i_kategori_fil);
+            foreach (string kat in nye_iKategorier)
+                sw.WriteLine(kat);
+            sw.Close();
+
+            sw = new StreamWriter(u_kategori_fil);
+            foreach (string kat in nye_uKategorier)
+                sw.WriteLine(kat);
+            sw.Close();
+            LoadKategorier();
+        }
+
+
+        public static void LoadKategorier()
+        {
+            CheckProgramExistence();
+
+            iKategorier = new List<string>();
+            StreamReader sr = new StreamReader(i_kategori_fil);
+            string line = sr.ReadLine();
+
+            while (line != null)
+            {
+                iKategorier.Add(line);
+                line = sr.ReadLine();
+            }
+            sr.Close();
+
+            uKategorier = new List<string>();
+            sr = new StreamReader(u_kategori_fil);
+            line = sr.ReadLine();
+
+            while (line != null)
+            {
+                uKategorier.Add(line);
+                line = sr.ReadLine();
+            }
+
+
+            sr.Close();
+        }
+
+        private static void CheckProgramExistence()
+        {
+            if (!Directory.Exists(dataDirectory))
+                Directory.CreateDirectory(dataDirectory);
+
+            if (!File.Exists(posteringPath))
+            {
+                fs = File.Create(posteringPath);
+                fs.Close();
+            }
+
+            if (!File.Exists(i_kategori_fil))
+            {
+                fs = File.Create(i_kategori_fil);
+                fs.Close();
+
+                StreamWriter sw = new StreamWriter(i_kategori_fil);
+                sw.WriteLine("Løn");
+                sw.WriteLine("SU");
+                sw.WriteLine("Gaver");
+                sw.WriteLine("Andet");
+                sw.WriteLine("Hussling");
+                sw.Close();
+            }
+
+            if (!File.Exists(u_kategori_fil))
+            {
+                fs = File.Create(u_kategori_fil);
+                fs.Close();
+                StreamWriter sw = new StreamWriter(u_kategori_fil);
+                sw.WriteLine("Mad");
+                sw.WriteLine("Gaver");
+                sw.WriteLine("Tøj");
+                sw.WriteLine("Hverdag");
+                sw.WriteLine("Skole");
+                sw.WriteLine("Coke");
+                sw.Close();
+            }
+
 
         }
         #endregion
@@ -157,23 +231,44 @@ namespace BudgetCore
             postering.Delete();
         }
 
-        public List<ListViewItem> GetAllePosteringer()
+        public List<Postering> GetAllePosteringer()
         {
-            List<ListViewItem> listViewAllePosteringer = new List<ListViewItem>();
-
-            foreach (Postering postering in posteringer)
-                listViewAllePosteringer.Add(postering.ListItem);
-
-            return listViewAllePosteringer;
+            return posteringer;
         }
 
 
-        public List<ListViewItem> SøgPosteringer(List<string> tilladte_u_kat, List<string> tilladte_i_kat, List<string> tilladte_typer, string min, string max, int datoSearch, DateTime minDato, DateTime maxDato)
+        public List<Postering> SøgPosteringer(List<string> tilladte_u_kat, List<string> tilladte_i_kat, List<string> tilladte_typer, string min, string max, int datoSearch, DateTime minDato, DateTime maxDato)
         {
-            List<ListViewItem> søgResultat = new List<ListViewItem>();
+            List<Postering> søgResultat = new List<Postering>();
 
             float i_min = Mathh.stringToFloat(min);
             float i_max = Mathh.stringToFloat(max);
+
+            DateTime UgeStart = DateTime.Today;
+            switch (DateTime.Now.DayOfWeek)
+            {
+                case DayOfWeek.Monday:
+                    break;
+                case DayOfWeek.Tuesday:
+                    UgeStart = UgeStart.AddDays(-1);
+                    break;
+                case DayOfWeek.Wednesday:
+                    UgeStart = UgeStart.AddDays(-2);
+                    break;
+                case DayOfWeek.Thursday:
+                    UgeStart = UgeStart.AddDays(-3);
+                    break;
+                case DayOfWeek.Friday:
+                    UgeStart = UgeStart.AddDays(-4);
+                    break;
+                case DayOfWeek.Saturday:
+                    UgeStart = UgeStart.AddDays(-5);
+                    break;
+                case DayOfWeek.Sunday:
+                    UgeStart = UgeStart.AddDays(-6);
+                    break;
+            }
+
 
 
             //Cycle through all posteringer
@@ -191,30 +286,64 @@ namespace BudgetCore
                 }
                 else
                     continue;
-
-                if (postering.Pris < i_min)
+                if (postering.Pris < i_min && i_min != 0)
                     continue;
 
-                if (postering.Pris > i_max)
+                if (postering.Pris > i_max && i_max != 0)
                     continue;
-
-                if (datoSearch == 3)    //Specifikt
+                switch (datoSearch)
                 {
-                    if (DateTime.Compare(postering.dato, maxDato) > 0)
-                        continue;
-                    else if (DateTime.Compare(postering.dato, minDato) < 0)
-                        continue;
+                    //År
+                    case 1:
+                        if (postering.dato.Year != DateTime.Now.Year)
+                            continue;
+                        break;
+                    //Måned
+                    case 2:
+                        if (postering.dato.Month != DateTime.Now.Month || postering.dato.Year != DateTime.Now.Year)
+                            continue;
+                        break;
+                    //Uge
+                    case 3:
+                        if (DateTime.Compare(postering.dato, UgeStart) < 0)
+                            continue;
+                        else if (DateTime.Compare(postering.dato, DateTime.Now) > 0)
+                            continue;
+                        break;
+
+                    //Dag
+                    case 4:
+                        if (postering.dato.Day != DateTime.Now.Day ||
+                            postering.dato.Month != DateTime.Now.Month ||
+                            postering.dato.Year != DateTime.Now.Year)
+                            continue;
+                        break;
+                    
+                    //Specifikt
+                    case 5:
+                        if (DateTime.Compare(postering.dato, maxDato) > 0)
+                            continue;
+                        else if (DateTime.Compare(postering.dato, minDato) < 0)
+                            continue;
+                        break;
                 }
 
-                else if (datoSearch == 2)   //Måned
-                    if (postering.dato.Month != DateTime.Now.Month || postering.dato.Year != DateTime.Now.Year)
-                        continue;
-
-                søgResultat.Add(postering.ListItem);
+                søgResultat.Add(postering);
             }
 
             return søgResultat;
 
+        }
+        public List<Postering> SøgPosteringerTekst(string text)
+        {
+            List<Postering> resultat_list = new List<Postering>();
+            text = text.ToLower();
+            foreach (Postering post in posteringer)
+            {
+                if (post.Beskrivelse.ToLower().Contains(text))
+                    resultat_list.Add(post);
+            }
+            return resultat_list;
         }
         #endregion
 
@@ -224,7 +353,7 @@ namespace BudgetCore
         public void OpretSamplePosteringer()
         {
 
-            for (int i = 0; i < 50; i++)
+            for (int i = 0; i < 200; i++)
             {
                 posteringer.Add(new Postering("Tilfældig postering nr. " + i.ToString()));
             }
@@ -234,33 +363,6 @@ namespace BudgetCore
         #endregion
 
 
-        public static void UpdateKategorier()
-        {
-            iKategorier = new List<string>();
-            StreamReader sr = new StreamReader(i_path);
-            string line = sr.ReadLine();
-
-            while (line != null)
-            {
-                iKategorier.Add(line);
-                line = sr.ReadLine();
-            }
-
-
-            sr.Close();
-
-            uKategorier = new List<string>();
-            sr = new StreamReader(u_path);
-            line = sr.ReadLine();
-
-            while (line != null)
-            {
-                uKategorier.Add(line);
-                line = sr.ReadLine();
-            }
-
-
-            sr.Close();
-        }
+      
     }
 }

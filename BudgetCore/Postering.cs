@@ -113,7 +113,7 @@ namespace BudgetCore
         //Opret tilfældig postering
         public Postering(string navn)
         {
-            Thread.Sleep(2);
+            Thread.Sleep(5);
             int Seed = (int)DateTime.Now.Ticks;
             rnd = new Random(Seed);
 
@@ -177,9 +177,9 @@ namespace BudgetCore
         private Random gen = new Random();
         private DateTime RandomDay()
         {
-            DateTime start = new DateTime(2016, 1, 1);
+            DateTime start = new DateTime(2015, 1, 1);
             int range = (DateTime.Today - start).Days;
-            return start.AddDays(gen.Next(range));
+            return start.AddDays(gen.Next(range+7));
         }
     }
 }

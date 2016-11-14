@@ -19,24 +19,27 @@ namespace BudgetProgram
         PosteringManager manager = new PosteringManager();
         public static Budget instance = null;
         Indstillinger formIndstillinger;
+        private ListViewColumnSorter lvwColumnSorter;
+        private bool searchingAllowed;
 
-        //Excel
-        Excel.Application excelApp;
-        Excel._Workbook excelWorkbook;
-        
         public Budget()
         {
             InitializeComponent();
             instance = this;
+            searchingAllowed = false;
+
         }
 
         private void Form1_Load(object sender, EventArgs e)
         {
-            foreach (ListViewItem item in manager.GetAllePosteringer())
-                listPosteringer.Items.Add(item);
-
+            VisAllePosteringer();
             PrepareControls();
 
+            //Sorter til listview
+            lvwColumnSorter = new ListViewColumnSorter();
+            listPosteringer.ListViewItemSorter = lvwColumnSorter;
+            searchingAllowed = true;
+            
         }
 
         //Opret postering BLIVER KALDT AF DE TO OPRET KNAPPER
@@ -52,7 +55,7 @@ namespace BudgetProgram
                     VisAllePosteringer();
 
                 else
-                    MessageBox.Show(status.ToString());
+                    MessageBox.Show(GetStatusMessage(status));
             }
 
             //Hvis udgiftknappen trykkes oprettes en udgift
@@ -64,14 +67,28 @@ namespace BudgetProgram
                     VisAllePosteringer();
 
                 else
-                    MessageBox.Show(status.ToString());
+                    MessageBox.Show(GetStatusMessage(status));
             }
 
 
             UpdatePoseringsLabel();
         }
 
+        string GetStatusMessage(int status)
+        {
+            switch (status)
+            {
+                case 1:
+                    return ("Udfyld venligst beløb-feltet. Tilladte tegn: 0-9 , .");
+                case 2:
+                    return ("Udfyld venligt beskrivelse-feltet");
+                case 3:
+                    return ("Semikolon (;) må ikke benyttes i beskrivelses-feltet");
+                default:
+                    throw new Exception("Status unknown. Status: " + status.ToString());
+            }
 
+        }
 
         //Sletter de valgte udgifter og opdatterer label (Sender = KNAP)
         private void SletPosteringer(object sender, EventArgs e)
@@ -141,20 +158,26 @@ namespace BudgetProgram
             cListKategorier_u.Items.Clear();
 
             //Lists indtægter
+            bool HasCategories = false;
             foreach (string kategori in PosteringManager.iKategorier)
             {
                 cBoxKategori_i.Items.Add(kategori);
                 cListKategorier_i.Items.Add(kategori, true);
+                HasCategories = true;
             }
-            cBoxKategori_i.SelectedIndex = 0;
+            if (HasCategories)
+                cBoxKategori_i.SelectedIndex = 0;
 
             //Lists udgifter
+            HasCategories = false;
             foreach (string kategori in PosteringManager.uKategorier)
             {
                 cBoxKategori_u.Items.Add(kategori);
                 cListKategorier_u.Items.Add(kategori, true);
+                HasCategories = true;
             }
-            cBoxKategori_u.SelectedIndex = 0;
+            if (HasCategories)
+                cBoxKategori_u.SelectedIndex = 0;
 
             cListType.Items.Clear();
             cListType.Items.Add("Indtægt", true);
@@ -166,12 +189,13 @@ namespace BudgetProgram
             dateTimeStart.MaxDate = DateTime.Now.Date.AddDays(1);
             dateTimeSlut.Value = DateTime.Now.Date.AddDays(1);
 
-            cboxAlleDatoer.Checked = true;
+            checkedListBox1.SelectedIndex = 0;
 
             txtBoxMax.Text = "";
             txtBoxMin.Text = "";
         }
         #endregion
+
 
         #region Saving And Loading
 
@@ -179,6 +203,7 @@ namespace BudgetProgram
         {
             manager.Gem();
         }
+
 
         #endregion
 
@@ -197,11 +222,15 @@ namespace BudgetProgram
         }
         private void VisAllePosteringer()
         {
+            listPosteringer.BeginUpdate();
+            listPosteringer.ListViewItemSorter = null;
             SletAllePosteringer();
 
-            foreach (ListViewItem postering in manager.GetAllePosteringer())
-                listPosteringer.Items.Add(postering);
+            foreach (Postering postering in manager.GetAllePosteringer())
+                listPosteringer.Items.Add(postering.ListItem);
 
+            listPosteringer.ListViewItemSorter = lvwColumnSorter;
+            listPosteringer.EndUpdate();
             UpdatePoseringsLabel();
  
 
@@ -209,6 +238,9 @@ namespace BudgetProgram
 
         private void SøgPosteringer()
         {
+            if (searchingAllowed == false)
+                return;
+
             SletAllePosteringer();
 
             //Parametrer decleration
@@ -231,22 +263,21 @@ namespace BudgetProgram
             foreach (var item in cListKategorier_i.CheckedItems)
                 iallowedKategorier.Add(item.ToString());
 
-            if ((!cboxAlleDatoer.Checked) && (!cBoxMåned.Checked))
-                datoSearchType = 3;
-
-            else if (cBoxMåned.Checked)
-                datoSearchType = 2;
-
-            else
-                datoSearchType = 1;
-
+            datoSearchType = checkedListBox1.SelectedIndex;
             minDato = dateTimeStart.Value;
             maxDato = dateTimeSlut.Value;
 
-            foreach (ListViewItem postering in manager.SøgPosteringer(uallowedKategorier, iallowedKategorier, allowedTyper, min, max, datoSearchType,minDato,maxDato))
-                listPosteringer.Items.Add(postering);
+            //Listview Update
+            listPosteringer.BeginUpdate();
+            listPosteringer.ListViewItemSorter = null;
 
+            foreach (Postering postering in manager.SøgPosteringer(uallowedKategorier, iallowedKategorier, allowedTyper, min, max, datoSearchType,minDato,maxDato))
+                listPosteringer.Items.Add(postering.ListItem);
+
+            listPosteringer.ListViewItemSorter = lvwColumnSorter;
+            listPosteringer.EndUpdate();
             UpdatePoseringsLabel();
+
         }
             
         
@@ -254,37 +285,7 @@ namespace BudgetProgram
         #endregion
 
         #region Controls til sortering
-        private void checkBox1_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cboxAlleDatoer.Checked)
-            {
-                dateTimeStart.Enabled = false;
-                dateTimeSlut.Enabled = false;
-                cBoxMåned.Checked = false;
-            }
-            else if (!cBoxMåned.Checked)
-            {
-                dateTimeStart.Enabled = true;
-                dateTimeSlut.Enabled = true;
-            }
-        }
-
-        private void cBoxMåned_CheckedChanged(object sender, EventArgs e)
-        {
-            if (cBoxMåned.Checked)
-            {
-                dateTimeStart.Enabled = false;
-                dateTimeSlut.Enabled = false;
-                cboxAlleDatoer.Checked = false;
-            }
-            else if (!cboxAlleDatoer.Checked)
-            {
-                dateTimeStart.Enabled = true;
-                dateTimeSlut.Enabled = true;
-            }
-
-        }
-
+        
         private void btnVisAlle_Click(object sender, EventArgs e)
         {
             VisAllePosteringer();
@@ -315,16 +316,19 @@ namespace BudgetProgram
         private void cListKategorier_u_SelectedIndexChanged(object sender, EventArgs e)
         {
             cListKategorier_u.ClearSelected();
+            SøgPosteringer();
         }
 
         private void cListKategorier_i_SelectedIndexChanged(object sender, EventArgs e)
         {
             cListKategorier_i.ClearSelected();
+            SøgPosteringer();
         }
 
         private void cListType_SelectedIndexChanged(object sender, EventArgs e)
         {
             cListType.ClearSelected();
+            SøgPosteringer();
         }
         #endregion
 
@@ -343,6 +347,96 @@ namespace BudgetProgram
         {
             formIndstillinger = new Indstillinger();
             formIndstillinger.ShowDialog();
+        }
+
+        private void listPosteringer_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void ColumnClick_Event(object sender, ColumnClickEventArgs e)
+        {
+            // Determine if clicked column is already the column that is being sorted.
+            if (e.Column == lvwColumnSorter.SortColumn)
+            {
+                // Reverse the current sort direction for this column.
+                if (lvwColumnSorter.Order == SortOrder.Ascending)
+                {
+                    lvwColumnSorter.Order = SortOrder.Descending;
+                }
+                else
+                {
+                    lvwColumnSorter.Order = SortOrder.Ascending;
+                }
+            }
+            else
+            {
+                // Set the column number that is to be sorted; default to ascending.
+                lvwColumnSorter.SortColumn = e.Column;
+                lvwColumnSorter.Order = SortOrder.Ascending;
+            }
+
+            // Perform the sort with these new sort options.
+            listPosteringer.Sort();
+        }
+
+        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
+        {
+            btnGem_Click(sender, EventArgs.Empty);
+        }
+
+        private void toolStripButton2_Click(object sender, EventArgs e)
+        {
+            btnIndstillinger_Click(sender, EventArgs.Empty);
+        }
+
+        private void SearchTextChange(object sender, EventArgs e)
+        {
+            listPosteringer.BeginUpdate();
+            listPosteringer.ListViewItemSorter = null;
+            SletAllePosteringer();
+
+            foreach (Postering postering in manager.SøgPosteringerTekst(txtBoxSearch.Text))
+                listPosteringer.Items.Add(postering.ListItem);
+
+            listPosteringer.ListViewItemSorter = lvwColumnSorter;
+            listPosteringer.EndUpdate();
+            UpdatePoseringsLabel();
+        }
+
+        private void ControlValueChange(object sender, EventArgs e)
+        {
+            SøgPosteringer();
+        }
+
+        private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            //Dato controls
+            if (checkedListBox1.SelectedIndex == 5)
+            {
+                dateTimeStart.Enabled = true;
+                dateTimeSlut.Enabled = true;
+            }
+            else
+            {
+                dateTimeStart.Enabled = false;
+                dateTimeSlut.Enabled = false;
+            }
+
+            //Sørger for at kun én checkbox er checked
+
+            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            {
+                if (checkedListBox1.SelectedIndex == i)
+                {
+                    checkedListBox1.SetItemCheckState(i, CheckState.Checked);
+                    continue;
+                }
+                checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+            }
+
+            SøgPosteringer();
+
         }
     }
 }

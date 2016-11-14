@@ -14,68 +14,71 @@ namespace BudgetProgram
 {
     public partial class Indstillinger : Form
     {
+        #region Declaration og instantiation
         List<string> i_kategorier;
         List<string> u_kategorier;
 
+        PosteringManager Manager;
+
         public Indstillinger()
         {
+            
             InitializeComponent();
-            ReadKategorier();
+            FetchKategorier();
             btnSlet_i.Enabled = false;
             btnSlet_u.Enabled = false;
+            Manager = PosteringManager.instance;
         }
 
         private void Indstillinger_Load(object sender, EventArgs e)
         {
             
         }
+        #endregion
 
-        private void ReadKategorier()
+        #region Fetching og pushing af indstillinger til manager ved start og slut
+        //Henter i- og u-kategorier fra PosteringManagers lister. 
+        //Indsætter kategorierne i listevisningerne 
+        private void FetchKategorier()
         {
             i_kategorier = new List<string>();
-            StreamReader sr = new StreamReader(PosteringManager.i_path);
-            string line = sr.ReadLine();
-
-            while (line != null)
+            foreach (string kat in PosteringManager.iKategorier)
             {
-                i_kategorier.Add(line);
-                listBoxKategorier_i.Items.Add(line);
-                line = sr.ReadLine();
+                listBoxKategorier_i.Items.Add(kat);
+                i_kategorier.Add(kat);
             }
-
-
-            sr.Close();
 
             u_kategorier = new List<string>();
-            sr = new StreamReader(PosteringManager.u_path);
-            line = sr.ReadLine();
-
-            while (line != null)
+            foreach (string kat in PosteringManager.uKategorier)
             {
-                u_kategorier.Add(line);
-                listBoxKategorier_u.Items.Add(line);
-                line = sr.ReadLine();
+                listBoxKategorier_u.Items.Add(kat);
+                u_kategorier.Add(kat);
             }
-
-            sr.Close();
 
         }
 
-        private void WriteKategorier()
+        //Sender indstillinger til manager, som gemmer disse og opdaterer lokale variabble
+        //Resetter controls på Budget.cs så de har de nye indstillinger (fx. kategorier)
+        private void btnGem_Click(object sender, EventArgs e)
         {
-            StreamWriter sw = new StreamWriter(PosteringManager.i_path);
-            foreach (string kat in i_kategorier)
-                sw.WriteLine(kat);
-            sw.Close();
-
-            sw = new StreamWriter(PosteringManager.u_path);
-            foreach (string kat in u_kategorier)
-                sw.WriteLine(kat);
-            sw.Close();
-            PosteringManager.UpdateKategorier();
+            Manager.WriteKategorier(i_kategorier, u_kategorier);
             Budget.instance.ControlValuesToDefault();
         }
 
+        //Det samme som btnGem, lukker indstillinger-vinduet.
+        private void btnOK_Click(object sender, EventArgs e)
+        {
+            Manager.WriteKategorier(i_kategorier, u_kategorier);
+            Budget.instance.ControlValuesToDefault();
+            this.Close();
+
+        }
+
+        #endregion
+
+        #region Kategori-lister front og back end
+
+        //Ny i-kategori. 
         private void btnNy_Click(object sender, EventArgs e)
         {
             StringBox box = new StringBox("Navn på ny indtægtskategori", "Ny indtægtskategori");
@@ -89,6 +92,7 @@ namespace BudgetProgram
 
         }
 
+        //Ny u-kategori
         private void btnNy_u_Click(object sender, EventArgs e)
         {
             StringBox box = new StringBox("Navn på ny udgiftskategori", "Ny udgiftskategori");
@@ -102,34 +106,71 @@ namespace BudgetProgram
 
         }
 
+        //Slet i-kategori
         private void btnSlet_Click(object sender, EventArgs e)
         {
-            i_kategorier.Remove(listBoxKategorier_i.SelectedItem.ToString());
-            listBoxKategorier_i.Items.Remove(listBoxKategorier_i.SelectedItem);
+            string CategoryToDelete = listBoxKategorier_i.SelectedItem.ToString();
+            if (HasPostsWithCategory(CategoryToDelete, false))
+                return;
 
+            else
+            {
+                if (DialogResult.OK == MessageBox.Show("Er du sikker på at du vil slette kategorien '" + CategoryToDelete + "'?", "Sletning af kategori", MessageBoxButtons.OKCancel))
+                {
+                    i_kategorier.Remove(CategoryToDelete);
+                    listBoxKategorier_i.Items.Remove(CategoryToDelete);
+                }
+            }
         }
 
-
+        //Slet u-kategori
         private void btnSlet_u_Click(object sender, EventArgs e)
         {
-            u_kategorier.Remove(listBoxKategorier_u.SelectedItem.ToString());
-            listBoxKategorier_u.Items.Remove(listBoxKategorier_u.SelectedItem);
+            string CategoryToDelete = listBoxKategorier_u.SelectedItem.ToString();
+            if (HasPostsWithCategory(CategoryToDelete,true))
+                return;
+            else
+            {
+                if (DialogResult.OK == MessageBox.Show("Er du sikker på at du vil slette kategorien '" + CategoryToDelete + "'?","Sletning af kategori",MessageBoxButtons.OKCancel))
+                {
+                    u_kategorier.Remove(CategoryToDelete);
+                    listBoxKategorier_u.Items.Remove(listBoxKategorier_u.SelectedItem);
+                }
+            }
         }
 
+        //Tjekker om der er nogen poster med en given kategori. Bliver brugt ved sletning af kategori
 
-        private void btnGem_Click(object sender, EventArgs e)
+        private bool HasPostsWithCategory(string kategori, bool erUdgift)
         {
-            WriteKategorier();
+            //Laver søgning hvor kun poster med kategorien vises.
+            List<string> Cat = new List<string>();
+            Cat.Add(kategori);
+            List<string> Type = new List<string>();
+            if (erUdgift)
+                Type.Add("Udgift");
+            else
+                Type.Add("Indtægt");
+
+            bool hasPostsWithCat = false;
+            string message = "";
+            List<ListViewItem> resultat = new List<ListViewItem>();
+            foreach (Postering post in Manager.SøgPosteringer(Cat, Cat, Type, "", "", 1, DateTime.Today, DateTime.Today))
+            {
+                message += post.Beskrivelse + "\n";
+                hasPostsWithCat = true;
+            }
+
+            if (hasPostsWithCat)
+            {
+                MessageBox.Show("Der er poster som har kategorien '" + kategori + "' og kategorien kan derfor ikke slettes. Følgende poster har kategorien: \n\n" + message);
+                return true;
+            }
+            else
+                return false;
         }
-
-
-        private void btnOK_Click(object sender, EventArgs e)
-        {
-            WriteKategorier();
-            this.Close();
-
-        }
-
+        
+        //Sørger for at slet-knappen for i-kategorier kun virker når en kategori er valgt
         private void listBoxKategorier_i_SelectedValueChanged(object sender, EventArgs e)
         {
             bool anySelected = false;
@@ -146,6 +187,7 @@ namespace BudgetProgram
                 btnSlet_i.Enabled = false;
         }
 
+        //Sørger for at slet-knappen for u-kategorier kun virker når en kategori er valgt
         private void listBoxKategorier_u_SelectedValueChanged(object sender, EventArgs e)
         {
             bool anySelected = false;
@@ -161,5 +203,6 @@ namespace BudgetProgram
             else
                 btnSlet_u.Enabled = false;
         }
+        #endregion
     }
 }
