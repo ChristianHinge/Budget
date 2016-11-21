@@ -74,6 +74,7 @@
             this.btnVisAlle = new System.Windows.Forms.Button();
             this.btnReset = new System.Windows.Forms.Button();
             this.gboxSøg = new System.Windows.Forms.GroupBox();
+            this.clboxTid = new System.Windows.Forms.CheckedListBox();
             this.label8 = new System.Windows.Forms.Label();
             this.label7 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
@@ -85,8 +86,7 @@
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
-            this.checkedListBox1 = new System.Windows.Forms.CheckedListBox();
+            this.cboxVis = new System.Windows.Forms.ComboBox();
             this.tabControlMain.SuspendLayout();
             this.tabPageUdgift.SuspendLayout();
             this.tabPageIndtægt.SuspendLayout();
@@ -520,7 +520,7 @@
             // 
             // gboxSøg
             // 
-            this.gboxSøg.Controls.Add(this.checkedListBox1);
+            this.gboxSøg.Controls.Add(this.clboxTid);
             this.gboxSøg.Controls.Add(this.label8);
             this.gboxSøg.Controls.Add(this.label7);
             this.gboxSøg.Controls.Add(this.label6);
@@ -545,6 +545,23 @@
             this.gboxSøg.Size = new System.Drawing.Size(286, 376);
             this.gboxSøg.TabIndex = 32;
             this.gboxSøg.TabStop = false;
+            // 
+            // clboxTid
+            // 
+            this.clboxTid.CheckOnClick = true;
+            this.clboxTid.FormattingEnabled = true;
+            this.clboxTid.Items.AddRange(new object[] {
+            "Alle datoer",
+            "Dette år",
+            "Denne måned",
+            "Denne uge",
+            "Denne dag",
+            "Custom"});
+            this.clboxTid.Location = new System.Drawing.Point(0, 255);
+            this.clboxTid.Name = "clboxTid";
+            this.clboxTid.Size = new System.Drawing.Size(106, 106);
+            this.clboxTid.TabIndex = 42;
+            this.clboxTid.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
             // 
             // label8
             // 
@@ -647,35 +664,21 @@
             this.toolStripButton3.Size = new System.Drawing.Size(98, 22);
             this.toolStripButton3.Text = "Opret Budget";
             // 
-            // comboBox1
+            // cboxVis
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
+            this.cboxVis.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cboxVis.Font = new System.Drawing.Font("Segoe UI", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboxVis.FormattingEnabled = true;
+            this.cboxVis.Items.AddRange(new object[] {
             "Uge",
             "Måned",
-            "År"});
-            this.comboBox1.Location = new System.Drawing.Point(698, 28);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(65, 23);
-            this.comboBox1.TabIndex = 36;
-            // 
-            // checkedListBox1
-            // 
-            this.checkedListBox1.CheckOnClick = true;
-            this.checkedListBox1.FormattingEnabled = true;
-            this.checkedListBox1.Items.AddRange(new object[] {
-            "Alle datoer",
-            "Dette år",
-            "Denne måned",
-            "Denne uge",
-            "Denne dag",
-            "Custom"});
-            this.checkedListBox1.Location = new System.Drawing.Point(0, 255);
-            this.checkedListBox1.Name = "checkedListBox1";
-            this.checkedListBox1.Size = new System.Drawing.Size(106, 106);
-            this.checkedListBox1.TabIndex = 42;
-            this.checkedListBox1.SelectedIndexChanged += new System.EventHandler(this.checkedListBox1_SelectedIndexChanged);
+            "År",
+            "Alle"});
+            this.cboxVis.Location = new System.Drawing.Point(698, 28);
+            this.cboxVis.Name = "cboxVis";
+            this.cboxVis.Size = new System.Drawing.Size(65, 23);
+            this.cboxVis.TabIndex = 36;
+            this.cboxVis.SelectedIndexChanged += new System.EventHandler(this.cboxVis_SelectedIndexChanged);
             // 
             // Budget
             // 
@@ -685,7 +688,7 @@
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
             this.ClientSize = new System.Drawing.Size(775, 636);
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboxVis);
             this.Controls.Add(this.toolStrip1);
             this.Controls.Add(this.cboxBegræns);
             this.Controls.Add(this.gboxSøg);
@@ -769,11 +772,11 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
         private System.Windows.Forms.ToolStripButton toolStripButton2;
         private System.Windows.Forms.TextBox txtBoxSearch;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboxVis;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
-        private System.Windows.Forms.CheckedListBox checkedListBox1;
+        private System.Windows.Forms.CheckedListBox clboxTid;
     }
 }
 

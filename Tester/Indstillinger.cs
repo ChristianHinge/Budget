@@ -86,6 +86,11 @@ namespace BudgetProgram
 
             if (box.finished)
             {
+                if (i_kategorier.Contains(box.output))
+                {
+                    MessageBox.Show("Kategorien: '" + box.output + "' eksisterer allerede");
+                    return;
+                }
                 listBoxKategorier_i.Items.Add(box.output);
                 i_kategorier.Add(box.output);
             }
@@ -100,6 +105,11 @@ namespace BudgetProgram
 
             if (box.finished)
             {
+                if (u_kategorier.Contains(box.output))
+                {
+                    MessageBox.Show("Kategorien: '" + box.output + "' eksisterer allerede");
+                    return;
+                }
                 listBoxKategorier_u.Items.Add(box.output);
                 u_kategorier.Add(box.output);
             }

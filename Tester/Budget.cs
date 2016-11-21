@@ -152,6 +152,8 @@ namespace BudgetProgram
 
         public void ControlValuesToDefault()
         {
+            searchingAllowed = false;
+
             cBoxKategori_i.Items.Clear();
             cBoxKategori_u.Items.Clear();
             cListKategorier_i.Items.Clear();
@@ -189,13 +191,17 @@ namespace BudgetProgram
             dateTimeStart.MaxDate = DateTime.Now.Date.AddDays(1);
             dateTimeSlut.Value = DateTime.Now.Date.AddDays(1);
 
-            checkedListBox1.SelectedIndex = 0;
+            clboxTid.SelectedIndex = 0;
 
             txtBoxMax.Text = "";
             txtBoxMin.Text = "";
+
+            searchingAllowed = true;
+            SøgPosteringer();
+
+            cboxVis.SelectedIndex = 3;
         }
         #endregion
-
 
         #region Saving And Loading
 
@@ -263,7 +269,7 @@ namespace BudgetProgram
             foreach (var item in cListKategorier_i.CheckedItems)
                 iallowedKategorier.Add(item.ToString());
 
-            datoSearchType = checkedListBox1.SelectedIndex;
+            datoSearchType = clboxTid.SelectedIndex;
             minDato = dateTimeStart.Value;
             maxDato = dateTimeSlut.Value;
 
@@ -288,7 +294,23 @@ namespace BudgetProgram
         
         private void btnVisAlle_Click(object sender, EventArgs e)
         {
-            VisAllePosteringer();
+            ControlValuesToDefault();
+            switch (cboxVis.SelectedIndex)
+            {
+                case 0:
+                    clboxTid.SelectedIndex = 3;
+                    break;
+                case 1:
+                    clboxTid.SelectedIndex = 2;
+                    break;
+                case 2:
+                    clboxTid.SelectedIndex = 1;
+                    break;
+                case 3:
+                    clboxTid.SelectedIndex = 0;
+                    break;
+            }
+
         }
 
 
@@ -412,7 +434,7 @@ namespace BudgetProgram
         private void checkedListBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             //Dato controls
-            if (checkedListBox1.SelectedIndex == 5)
+            if (clboxTid.SelectedIndex == 5)
             {
                 dateTimeStart.Enabled = true;
                 dateTimeSlut.Enabled = true;
@@ -425,17 +447,22 @@ namespace BudgetProgram
 
             //Sørger for at kun én checkbox er checked
 
-            for (int i = 0; i < checkedListBox1.Items.Count; i++)
+            for (int i = 0; i < clboxTid.Items.Count; i++)
             {
-                if (checkedListBox1.SelectedIndex == i)
+                if (clboxTid.SelectedIndex == i)
                 {
-                    checkedListBox1.SetItemCheckState(i, CheckState.Checked);
+                    clboxTid.SetItemCheckState(i, CheckState.Checked);
                     continue;
                 }
-                checkedListBox1.SetItemCheckState(i, CheckState.Unchecked);
+                clboxTid.SetItemCheckState(i, CheckState.Unchecked);
             }
 
             SøgPosteringer();
+
+        }
+
+        private void cboxVis_SelectedIndexChanged(object sender, EventArgs e)
+        {
 
         }
     }
