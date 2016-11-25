@@ -13,11 +13,12 @@ namespace BudgetCore
         public static PosteringManager instance;
 
         //IO Paths
-
         public static string dataDirectory { get; private set; } 
+        public static string currentBudget { get; private set; }
         public static string i_kategori_fil { get; private set; }
         public static string u_kategori_fil { get; private set; }
         public static string posteringPath { get; private set; }
+        public static string programData { get; private set; }
         public static FileStream fs;
         //Postering liste
 
@@ -44,9 +45,11 @@ namespace BudgetCore
             //Paths
             dataDirectory = AppDomain.CurrentDomain.BaseDirectory;
             dataDirectory = Path.GetFullPath(Path.Combine(dataDirectory, @"Data\"));
-            posteringPath = dataDirectory + "//posteringFil.txt";
-            i_kategori_fil = dataDirectory + "//iKategoriFil.txt";
-            u_kategori_fil = dataDirectory + "//uKategoriFil.txt";
+            programData = dataDirectory + "//ProgramData.txt";
+            currentBudget = Path.Combine(dataDirectory, GetBudget());
+            posteringPath =  currentBudget + "//posteringFil.txt";
+            i_kategori_fil = currentBudget + "//iKategoriFil.txt";
+            u_kategori_fil = currentBudget + "//uKategoriFil.txt";
 
 
             //Kategorier
@@ -208,6 +211,14 @@ namespace BudgetCore
 
 
         }
+        private static string GetBudget()
+        {
+            StreamReader sr = new StreamReader(programData);
+            string budget = sr.ReadLine();
+            sr.Close();
+            return @budget;
+        }
+
         #endregion
 
         #region Liste Manipulation

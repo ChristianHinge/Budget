@@ -39,7 +39,10 @@ namespace BudgetProgram
             lvwColumnSorter = new ListViewColumnSorter();
             listPosteringer.ListViewItemSorter = lvwColumnSorter;
             searchingAllowed = true;
-            
+
+            //Denne kontrol må ikke flyttes til Controls to defualt funktionen
+            cboxVis.SelectedIndex = 3;
+
         }
 
         //Opret postering BLIVER KALDT AF DE TO OPRET KNAPPER
@@ -199,7 +202,7 @@ namespace BudgetProgram
             searchingAllowed = true;
             SøgPosteringer();
 
-            cboxVis.SelectedIndex = 3;
+
         }
         #endregion
 
