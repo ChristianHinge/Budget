@@ -199,6 +199,15 @@ namespace BudgetProgram
             txtBoxMax.Text = "";
             txtBoxMin.Text = "";
 
+            foreach (string budget in PosteringManager.budgetFiles)
+                toolStripBudgets.Items.Add(budget);
+
+            //Tjekker om der er et budget
+            if (toolStripBudgets.Items.Count == 0)
+                throw new Exception("No budget to load into toolbox control");
+            else
+                toolStripBudgets.SelectedIndex = 0;
+
             searchingAllowed = true;
             SøgPosteringer();
 
@@ -465,6 +474,11 @@ namespace BudgetProgram
         }
 
         private void cboxVis_SelectedIndexChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void toolStripBudgets_SelectedIndexChanged(object sender, EventArgs e)
         {
 
         }

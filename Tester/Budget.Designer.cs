@@ -87,6 +87,7 @@
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
             this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
             this.cboxVis = new System.Windows.Forms.ComboBox();
+            this.toolStripBudgets = new System.Windows.Forms.ToolStripComboBox();
             this.tabControlMain.SuspendLayout();
             this.tabPageUdgift.SuspendLayout();
             this.tabPageIndtægt.SuspendLayout();
@@ -626,6 +627,7 @@
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
+            this.toolStripBudgets,
             this.toolStripButton3});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -679,6 +681,13 @@
             this.cboxVis.Size = new System.Drawing.Size(65, 23);
             this.cboxVis.TabIndex = 36;
             this.cboxVis.SelectedIndexChanged += new System.EventHandler(this.cboxVis_SelectedIndexChanged);
+            // 
+            // toolStripBudgets
+            // 
+            this.toolStripBudgets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.toolStripBudgets.Name = "toolStripBudgets";
+            this.toolStripBudgets.Size = new System.Drawing.Size(121, 25);
+            this.toolStripBudgets.SelectedIndexChanged += new System.EventHandler(this.toolStripBudgets_SelectedIndexChanged);
             // 
             // Budget
             // 
@@ -777,6 +786,7 @@
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.CheckedListBox clboxTid;
+        private System.Windows.Forms.ToolStripComboBox toolStripBudgets;
     }
 }
 

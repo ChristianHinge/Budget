@@ -12,20 +12,21 @@ namespace BudgetCore
         //Singleton
         public static PosteringManager instance;
 
-        //IO Paths
+        //Filer
         public static string dataDirectory { get; private set; } 
         public static string currentBudget { get; private set; }
         public static string i_kategori_fil { get; private set; }
         public static string u_kategori_fil { get; private set; }
         public static string posteringPath { get; private set; }
         public static string programData { get; private set; }
+        public static List<string> budgetFiles { get; private set; }
+
         public static FileStream fs;
         //Postering liste
 
         List<Postering> posteringer;
 
         //Liste med udgift og indtægt kategorier
-
         public static List<string> iKategorier { get; private set; }
         public static List<string> uKategorier { get; private set; }
         public static int AntalPosteringer
@@ -41,12 +42,15 @@ namespace BudgetCore
         {
             instance = this;
             posteringer = new List<Postering>();
+            budgetFiles = new List<string>();
 
             //Paths
             dataDirectory = AppDomain.CurrentDomain.BaseDirectory;
             dataDirectory = Path.GetFullPath(Path.Combine(dataDirectory, @"Data\"));
             programData = dataDirectory + "//ProgramData.txt";
-            currentBudget = Path.Combine(dataDirectory, GetBudget());
+
+            //Loader budget filerne ind i en liste og returnere den første. Denne benyttes når programmet åbnes.
+            currentBudget = Path.Combine(dataDirectory, LoadBudgetFiles());
             posteringPath =  currentBudget + "//posteringFil.txt";
             i_kategori_fil = currentBudget + "//iKategoriFil.txt";
             u_kategori_fil = currentBudget + "//uKategoriFil.txt";
@@ -175,9 +179,18 @@ namespace BudgetCore
             if (!Directory.Exists(dataDirectory))
                 Directory.CreateDirectory(dataDirectory);
 
+            if (!Directory.Exists(currentBudget))
+                Directory.CreateDirectory(currentBudget);
+
             if (!File.Exists(posteringPath))
             {
                 fs = File.Create(posteringPath);
+                fs.Close();
+            }
+
+            if (!File.Exists(programData))
+            {
+                fs = File.Create(programData);
                 fs.Close();
             }
 
@@ -211,10 +224,17 @@ namespace BudgetCore
 
 
         }
-        private static string GetBudget()
+        private static string LoadBudgetFiles()
         {
             StreamReader sr = new StreamReader(programData);
             string budget = sr.ReadLine();
+            budgetFiles.Add(budget);
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                budgetFiles.Add(line);
+                line = sr.ReadLine();
+            }
             sr.Close();
             return @budget;
         }
