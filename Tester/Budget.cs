@@ -1,15 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using System.IO;
-using Excel = Microsoft.Office.Interop.Excel;
-using System.Runtime.InteropServices;
 using BudgetCore;
 
 namespace BudgetProgram
@@ -164,7 +155,7 @@ namespace BudgetProgram
 
             //Lists indtægter
             bool HasCategories = false;
-            foreach (string kategori in PosteringManager.iKategorier)
+            foreach (string kategori in manager.iKategorier)
             {
                 cBoxKategori_i.Items.Add(kategori);
                 cListKategorier_i.Items.Add(kategori, true);
@@ -175,7 +166,7 @@ namespace BudgetProgram
 
             //Lists udgifter
             HasCategories = false;
-            foreach (string kategori in PosteringManager.uKategorier)
+            foreach (string kategori in manager.uKategorier)
             {
                 cBoxKategori_u.Items.Add(kategori);
                 cListKategorier_u.Items.Add(kategori, true);
@@ -199,15 +190,21 @@ namespace BudgetProgram
             txtBoxMax.Text = "";
             txtBoxMin.Text = "";
 
-            foreach (string budget in PosteringManager.budgetFiles)
-                toolStripBudgets.Items.Add(budget);
+            toolStripBudget.DropDownItems.Clear();
+            foreach (string budget in manager.budgetFiles)
+            {
+                var menu = toolStripBudget.DropDownItems.Add(budget);
+                menu.Click += new System.EventHandler(SkiftBudget);
+            }
 
-            //Tjekker om der er et budget
-            if (toolStripBudgets.Items.Count == 0)
-                throw new Exception("No budget to load into toolbox control");
-            else
-                toolStripBudgets.SelectedIndex = 0;
 
+            toolStripBudget.DropDownItems.Add(new ToolStripSeparator());
+            var menu2 = toolStripBudget.DropDownItems.Add("Opret nyt budget");
+            menu2.Click += new System.EventHandler(OpretBudget);
+            menu2 = toolStripBudget.DropDownItems.Add("Slet eksisterende budget");
+            menu2.Click += new System.EventHandler(SletBudget);
+
+            this.Text = "Flere pølsehorn | " + manager.budgetName;
             searchingAllowed = true;
             SøgPosteringer();
 
@@ -334,7 +331,7 @@ namespace BudgetProgram
 
         private void UpdatePoseringsLabel()
         {
-            lblPosteringer.Text = "Antal posteringer vist: " + listPosteringer.Items.Count.ToString() + " ud af " + PosteringManager.AntalPosteringer;
+            lblPosteringer.Text = "Antal posteringer vist: " + listPosteringer.Items.Count.ToString() + " ud af " + manager.AntalPosteringer;
         }
 
 
@@ -414,11 +411,6 @@ namespace BudgetProgram
             listPosteringer.Sort();
         }
 
-        private void toolStrip1_ItemClicked(object sender, ToolStripItemClickedEventArgs e)
-        {
-            btnGem_Click(sender, EventArgs.Empty);
-        }
-
         private void toolStripButton2_Click(object sender, EventArgs e)
         {
             btnIndstillinger_Click(sender, EventArgs.Empty);
@@ -473,12 +465,35 @@ namespace BudgetProgram
 
         }
 
-        private void cboxVis_SelectedIndexChanged(object sender, EventArgs e)
-        {
 
+        private void SkiftBudget(object sender, EventArgs e)
+        {
+            switch (MessageBox.Show("Ønsker du at gemme dit nuværende budget, før du skifter?","Skift Budget",MessageBoxButtons.YesNoCancel))
+            {
+                case DialogResult.Yes:
+                    //manager.Gem();
+                    break;
+                case DialogResult.Cancel:
+                    return;
+            }
+            manager.SkiftBudget(sender.ToString());
+            manager = new PosteringManager();
+            ControlValuesToDefault();
         }
 
-        private void toolStripBudgets_SelectedIndexChanged(object sender, EventArgs e)
+        private void OpretBudget(object sender, EventArgs e)
+        {
+            formIndstillinger = new Indstillinger();
+            formIndstillinger.ShowDialog();
+        }
+
+        private void SletBudget(object sender, EventArgs e)
+        {
+            formIndstillinger = new Indstillinger();
+            formIndstillinger.ShowDialog();
+        }
+
+        private void toolStripBudget_Click(object sender, EventArgs e)
         {
 
         }

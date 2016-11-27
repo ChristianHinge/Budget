@@ -12,7 +12,6 @@ namespace BudgetCore
 {
     class Postering
     {
-
         public static string valuta = " kr.";
         private Random rnd = new Random();
 
@@ -22,42 +21,6 @@ namespace BudgetCore
         public string kategori { get; private set; }
         public DateTime dato { get; private set; }
         public bool erUdgift { get; private set; }
-
-        //Static properties
-        private static int antal = 0;
-        public static int Antal
-        {
-            get
-            {
-                return antal;
-            }
-        }
-
-        private static float sumUdgift = 0;
-        public static float SamledeUdgift
-        {
-            get
-            {
-                return sumUdgift;
-            }
-        }
-
-        private static float sumIndtægt = 0;
-        public static float SamledeIndtægt
-        {
-            get
-            {
-                return sumIndtægt;
-            }
-        }
-
-        public static float Balance
-        {
-            get
-            {
-                return sumIndtægt - sumUdgift;
-            }
-        }
 
         //Properties
         private ListViewItem listItem;
@@ -97,16 +60,9 @@ namespace BudgetCore
             dato = date;
 
             if (udgift == true)
-            {
-                sumUdgift += pris;
                 erUdgift = true;
-            }
             else
-            {
-                sumIndtægt += pris;
                 erUdgift = false;
-            }
-            antal++;
             MakeListItem();
         }
 
@@ -124,22 +80,20 @@ namespace BudgetCore
             if (i == 0)
             {
                 erUdgift = true;
-                sumUdgift += pris;
-                n = rnd.Next(0, PosteringManager.uKategorier.Count);
-                kategori = PosteringManager.uKategorier[n];
+                n = rnd.Next(0, PosteringManager.instance.uKategorier.Count);
+                kategori = PosteringManager.instance.uKategorier[n];
             }
             else
             {
                 erUdgift = false;
-                sumIndtægt += pris;
-                n = rnd.Next(0, PosteringManager.iKategorier.Count);
-                kategori = PosteringManager.iKategorier[n];
+                n = rnd.Next(0, PosteringManager.instance.iKategorier.Count);
+                kategori = PosteringManager.instance.iKategorier[n];
             }
 
             dato = RandomDay();
 
 
-            antal++;
+            //antal++;
             MakeListItem();
         }
 
@@ -161,14 +115,7 @@ namespace BudgetCore
 
         }
         //Ændrer sum indtægter eller udgifter når slettet
-        public void Delete()
-        {
-            if (erUdgift)
-                sumUdgift -= pris;
-            else
-                sumIndtægt -= pris;
-            antal--;
-        }
+
         public string GetSaveString()
         {
             return (Beskrivelse + ";" + pris.ToString() + ";" + kategori + ";" + dato.ToString() + ";" + erUdgift.ToString());
@@ -181,5 +128,6 @@ namespace BudgetCore
             int range = (DateTime.Today - start).Days;
             return start.AddDays(gen.Next(range+7));
         }
+
     }
 }

@@ -13,34 +13,39 @@ namespace BudgetCore
         public static PosteringManager instance;
 
         //Filer
-        public static string dataDirectory { get; private set; } 
-        public static string currentBudget { get; private set; }
-        public static string i_kategori_fil { get; private set; }
-        public static string u_kategori_fil { get; private set; }
-        public static string posteringPath { get; private set; }
-        public static string programData { get; private set; }
-        public static List<string> budgetFiles { get; private set; }
+        public string dataDirectory { get; private set; }
+        public string programData { get; private set; }
+        public string currentBudget { get; private set; }
+        public string i_kategori_fil { get; private set; }
+        public string u_kategori_fil { get; private set; }
+        public string posteringPath { get; private set; }
+        public List<string> budgetFiles { get; private set; }
 
-        public static FileStream fs;
+        public FileStream fs;
+
         //Postering liste
-
         List<Postering> posteringer;
 
-        //Liste med udgift og indtægt kategorier
-        public static List<string> iKategorier { get; private set; }
-        public static List<string> uKategorier { get; private set; }
-        public static int AntalPosteringer
+        //Andre variable
+        public int AntalPosteringer
         {
             get
             {
-                return Postering.Antal;
+                return posteringer.Count;
             }
         }
+
+        public string budgetName { get; private set; }
+
+        //Liste med udgift og indtægt kategorier
+        public  List<string> iKategorier { get; private set; }
+        public  List<string> uKategorier { get; private set; }
 
 
         public PosteringManager()
         {
             instance = this;
+
             posteringer = new List<Postering>();
             budgetFiles = new List<string>();
 
@@ -61,7 +66,8 @@ namespace BudgetCore
             //uKategorier = new List<string> { "Abonnementer", "Andet / Store Køb", "Gaver", "Hverdag", "Mad", "Sjov", "Skole", "Telefon", "Tøj" };
             LoadKategorier();
 
-
+            //Slet ubrugte budget-mapper
+            DeleteUnreferencedBudgets();
 
             //Load posteringer
             Load();
@@ -122,6 +128,60 @@ namespace BudgetCore
 
         }
 
+        private void DeleteUnreferencedBudgets()
+        {
+            foreach (string dir in Directory.GetDirectories(dataDirectory))
+            {
+                if (!(budgetFiles.Contains((dir.Split('\\')[dir.Split('\\').Length - 1]))))
+                    Directory.Delete(dir,true);
+
+            }
+        }
+
+        public void SkiftBudget(string budget)
+        {
+            StreamWriter sw = new StreamWriter(programData);
+            sw.WriteLine(budget);
+            foreach (string line in budgetFiles)
+            {
+                if (line == budget)
+                    continue;
+                sw.WriteLine(line);
+            }
+            sw.Close();
+        }
+
+        private string LoadBudgetFiles()
+        {
+            budgetFiles = new List<string>();
+            StreamReader sr = new StreamReader(programData);
+            budgetName = sr.ReadLine();
+            budgetFiles.Add(budgetName);
+            string line = sr.ReadLine();
+            while (line != null)
+            {
+                budgetFiles.Add(line);
+                line = sr.ReadLine();
+            }
+            sr.Close();
+            return @budgetName;
+        }
+
+        public void WriteBudgets(List<string> budgets)
+        {
+            budgetFiles = new List<string>();
+            StreamWriter sw = new StreamWriter(programData);
+            foreach (string budget in budgets)
+            {
+                budgetFiles.Add(budget);
+                sw.WriteLine(budget);
+            }
+
+            sw.Close();
+            SkiftBudget(LoadBudgetFiles());
+
+        }
+
         //Omdanner en gemt string til et Posteringsobjekt
         private Postering Unwrap(string input)
         {
@@ -145,7 +205,7 @@ namespace BudgetCore
         }
 
 
-        public static void LoadKategorier()
+        public void LoadKategorier()
         {
             CheckProgramExistence();
 
@@ -174,7 +234,7 @@ namespace BudgetCore
             sr.Close();
         }
 
-        private static void CheckProgramExistence()
+        private void CheckProgramExistence()
         {
             if (!Directory.Exists(dataDirectory))
                 Directory.CreateDirectory(dataDirectory);
@@ -224,20 +284,9 @@ namespace BudgetCore
 
 
         }
-        private static string LoadBudgetFiles()
-        {
-            StreamReader sr = new StreamReader(programData);
-            string budget = sr.ReadLine();
-            budgetFiles.Add(budget);
-            string line = sr.ReadLine();
-            while (line != null)
-            {
-                budgetFiles.Add(line);
-                line = sr.ReadLine();
-            }
-            sr.Close();
-            return @budget;
-        }
+
+
+         
 
         #endregion
 
@@ -259,7 +308,6 @@ namespace BudgetCore
         {
             Postering postering = GetPostering(postItem);
             posteringer.Remove(postering);
-            postering.Delete();
         }
 
         public List<Postering> GetAllePosteringer()

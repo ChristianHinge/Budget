@@ -17,17 +17,18 @@ namespace BudgetProgram
         #region Declaration og instantiation
         List<string> i_kategorier;
         List<string> u_kategorier;
+        List<string> budgets;
 
-        PosteringManager Manager;
 
         public Indstillinger()
         {
-            
             InitializeComponent();
             FetchKategorier();
+            FetchBudgetter();
             btnSlet_i.Enabled = false;
             btnSlet_u.Enabled = false;
-            Manager = PosteringManager.instance;
+            btnSletBudget.Enabled = false;
+
         }
 
         private void Indstillinger_Load(object sender, EventArgs e)
@@ -36,20 +37,20 @@ namespace BudgetProgram
         }
         #endregion
 
-        #region Fetching og pushing af indstillinger til manager ved start og slut
-        //Henter i- og u-kategorier fra PosteringManagers lister. 
+        #region Fetching og pushing af indstillinger til PosteringManager.instance ved start og slut
+        //Henter i- og u-kategorier fra PosteringPosteringManager.instances lister. 
         //Indsætter kategorierne i listevisningerne 
         private void FetchKategorier()
         {
             i_kategorier = new List<string>();
-            foreach (string kat in PosteringManager.iKategorier)
+            foreach (string kat in PosteringManager.instance.iKategorier)
             {
                 listBoxKategorier_i.Items.Add(kat);
                 i_kategorier.Add(kat);
             }
 
             u_kategorier = new List<string>();
-            foreach (string kat in PosteringManager.uKategorier)
+            foreach (string kat in PosteringManager.instance.uKategorier)
             {
                 listBoxKategorier_u.Items.Add(kat);
                 u_kategorier.Add(kat);
@@ -57,18 +58,20 @@ namespace BudgetProgram
 
         }
 
-        //Sender indstillinger til manager, som gemmer disse og opdaterer lokale variabble
+        //Sender indstillinger til PosteringManager.instance, som gemmer disse og opdaterer lokale variabble
         //Resetter controls på Budget.cs så de har de nye indstillinger (fx. kategorier)
         private void btnGem_Click(object sender, EventArgs e)
         {
-            Manager.WriteKategorier(i_kategorier, u_kategorier);
+            PosteringManager.instance.WriteKategorier(i_kategorier, u_kategorier);
+            PosteringManager.instance.WriteBudgets(budgets);
             Budget.instance.ControlValuesToDefault();
         }
 
         //Det samme som btnGem, lukker indstillinger-vinduet.
         private void btnOK_Click(object sender, EventArgs e)
         {
-            Manager.WriteKategorier(i_kategorier, u_kategorier);
+            PosteringManager.instance.WriteKategorier(i_kategorier, u_kategorier);
+            PosteringManager.instance.WriteBudgets(budgets);
             Budget.instance.ControlValuesToDefault();
             this.Close();
 
@@ -165,7 +168,7 @@ namespace BudgetProgram
             bool hasPostsWithCat = false;
             string message = "";
             List<ListViewItem> resultat = new List<ListViewItem>();
-            foreach (Postering post in Manager.SøgPosteringer(Cat, Cat, Type, "", "", 1, DateTime.Today, DateTime.Today))
+            foreach (Postering post in PosteringManager.instance.SøgPosteringer(Cat, Cat, Type, "", "", 1, DateTime.Today, DateTime.Today))
             {
                 message += post.Beskrivelse + "\n";
                 hasPostsWithCat = true;
@@ -214,5 +217,63 @@ namespace BudgetProgram
                 btnSlet_u.Enabled = false;
         }
         #endregion
+
+        #region Budget-liste front og back end
+        private void btnOpretBudget_Click(object sender, EventArgs e)
+        {
+            StringBox box = new StringBox("Navn på budget", "Opret budget");
+            box.ShowDialog();
+            string budget = box.output;
+            if (listBoxBudgetter.Items.Contains(budget))
+                MessageBox.Show("Der er allerede oprettet et budget med dette navn");
+            else
+            {
+                listBoxBudgetter.Items.Add(budget);
+                budgets.Add(budget);
+            }
+
+        }
+
+        private void btnSletBudget_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Er du sikker på at du ønsker at slette følgende budget permanent: " + listBoxBudgetter.SelectedItem + "?", "Sletning af budget", MessageBoxButtons.YesNoCancel) == DialogResult.Yes)
+            {
+                string temp = listBoxBudgetter.SelectedItem.ToString();
+                budgets.Remove(temp);
+                listBoxBudgetter.Items.Remove(listBoxBudgetter.SelectedItem);
+            }
+                
+        }
+        
+        private void listBoxBudgetter_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            
+            bool anySelected = false;
+            for (int i = 0; i < listBoxBudgetter.Items.Count; i++)
+                if (listBoxBudgetter.GetSelected(i))
+                {
+                    anySelected = true;
+                    break;
+                }
+
+            if (anySelected)
+                btnSletBudget.Enabled = true;
+            else
+                btnSletBudget.Enabled = false;
+        }
+        private void FetchBudgetter()
+        {
+            budgets = new List<string>();
+            foreach (string budget in PosteringManager.instance.budgetFiles)
+            {
+                listBoxBudgetter.Items.Add(budget);
+                budgets.Add(budget);
+            }
+            
+        }
+
+        #endregion
+
+
     }
 }

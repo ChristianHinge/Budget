@@ -41,15 +41,20 @@
             this.btnNy_u = new System.Windows.Forms.Button();
             this.label2 = new System.Windows.Forms.Label();
             this.tabProfil = new System.Windows.Forms.TabPage();
+            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.lavl = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.lavl = new System.Windows.Forms.Label();
-            this.comboBox2 = new System.Windows.Forms.ComboBox();
+            this.tabBudgetter = new System.Windows.Forms.TabPage();
+            this.listBoxBudgetter = new System.Windows.Forms.ListBox();
+            this.btnOpretBudget = new System.Windows.Forms.Button();
+            this.btnSletBudget = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
             this.tabKategorier.SuspendLayout();
             this.tabProfil.SuspendLayout();
+            this.tabBudgetter.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxKategorier_i
@@ -92,7 +97,7 @@
             // 
             // btnAnvend
             // 
-            this.btnAnvend.Location = new System.Drawing.Point(279, 270);
+            this.btnAnvend.Location = new System.Drawing.Point(150, 270);
             this.btnAnvend.Name = "btnAnvend";
             this.btnAnvend.Size = new System.Drawing.Size(75, 23);
             this.btnAnvend.TabIndex = 5;
@@ -102,7 +107,7 @@
             // 
             // btnOK
             // 
-            this.btnOK.Location = new System.Drawing.Point(360, 270);
+            this.btnOK.Location = new System.Drawing.Point(231, 270);
             this.btnOK.Name = "btnOK";
             this.btnOK.Size = new System.Drawing.Size(75, 23);
             this.btnOK.TabIndex = 6;
@@ -112,12 +117,13 @@
             // 
             // tabControl1
             // 
+            this.tabControl1.Controls.Add(this.tabBudgetter);
             this.tabControl1.Controls.Add(this.tabKategorier);
             this.tabControl1.Controls.Add(this.tabProfil);
             this.tabControl1.Location = new System.Drawing.Point(0, 0);
             this.tabControl1.Name = "tabControl1";
             this.tabControl1.SelectedIndex = 0;
-            this.tabControl1.Size = new System.Drawing.Size(442, 268);
+            this.tabControl1.Size = new System.Drawing.Size(317, 268);
             this.tabControl1.TabIndex = 7;
             // 
             // tabKategorier
@@ -133,7 +139,7 @@
             this.tabKategorier.Location = new System.Drawing.Point(4, 22);
             this.tabKategorier.Name = "tabKategorier";
             this.tabKategorier.Padding = new System.Windows.Forms.Padding(3);
-            this.tabKategorier.Size = new System.Drawing.Size(434, 242);
+            this.tabKategorier.Size = new System.Drawing.Size(309, 242);
             this.tabKategorier.TabIndex = 0;
             this.tabKategorier.Text = "Kategorier";
             this.tabKategorier.UseVisualStyleBackColor = true;
@@ -187,10 +193,49 @@
             this.tabProfil.Location = new System.Drawing.Point(4, 22);
             this.tabProfil.Name = "tabProfil";
             this.tabProfil.Padding = new System.Windows.Forms.Padding(3);
-            this.tabProfil.Size = new System.Drawing.Size(434, 242);
+            this.tabProfil.Size = new System.Drawing.Size(309, 242);
             this.tabProfil.TabIndex = 1;
             this.tabProfil.Text = "Profil";
             this.tabProfil.UseVisualStyleBackColor = true;
+            // 
+            // comboBox2
+            // 
+            this.comboBox2.FormattingEnabled = true;
+            this.comboBox2.Items.AddRange(new object[] {
+            "Månede",
+            "År",
+            "Uge"});
+            this.comboBox2.Location = new System.Drawing.Point(8, 80);
+            this.comboBox2.Name = "comboBox2";
+            this.comboBox2.Size = new System.Drawing.Size(121, 21);
+            this.comboBox2.TabIndex = 5;
+            // 
+            // lavl
+            // 
+            this.lavl.AutoSize = true;
+            this.lavl.Location = new System.Drawing.Point(6, 64);
+            this.lavl.Name = "lavl";
+            this.lavl.Size = new System.Drawing.Size(215, 13);
+            this.lavl.TabIndex = 4;
+            this.lavl.Text = "Som standard, vis posteringer for gældende:";
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(6, 35);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(37, 13);
+            this.label4.TabIndex = 3;
+            this.label4.Text = "Valuta";
+            // 
+            // label3
+            // 
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(6, 9);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(33, 13);
+            this.label3.TabIndex = 2;
+            this.label3.Text = "Navn";
             // 
             // comboBox1
             // 
@@ -207,50 +252,54 @@
             this.textBox1.Size = new System.Drawing.Size(166, 20);
             this.textBox1.TabIndex = 0;
             // 
-            // label3
+            // tabBudgetter
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(6, 9);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(33, 13);
-            this.label3.TabIndex = 2;
-            this.label3.Text = "Navn";
+            this.tabBudgetter.Controls.Add(this.btnSletBudget);
+            this.tabBudgetter.Controls.Add(this.btnOpretBudget);
+            this.tabBudgetter.Controls.Add(this.listBoxBudgetter);
+            this.tabBudgetter.Location = new System.Drawing.Point(4, 22);
+            this.tabBudgetter.Name = "tabBudgetter";
+            this.tabBudgetter.Size = new System.Drawing.Size(309, 242);
+            this.tabBudgetter.TabIndex = 2;
+            this.tabBudgetter.Text = "Budgetter";
+            this.tabBudgetter.UseVisualStyleBackColor = true;
             // 
-            // label4
+            // listBoxBudgetter
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(6, 35);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(37, 13);
-            this.label4.TabIndex = 3;
-            this.label4.Text = "Valuta";
+            this.listBoxBudgetter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxBudgetter.FormattingEnabled = true;
+            this.listBoxBudgetter.ItemHeight = 25;
+            this.listBoxBudgetter.Location = new System.Drawing.Point(3, 3);
+            this.listBoxBudgetter.Name = "listBoxBudgetter";
+            this.listBoxBudgetter.Size = new System.Drawing.Size(171, 229);
+            this.listBoxBudgetter.TabIndex = 1;
+            this.listBoxBudgetter.SelectedIndexChanged += new System.EventHandler(this.listBoxBudgetter_SelectedIndexChanged);
             // 
-            // lavl
+            // btnOpretBudget
             // 
-            this.lavl.AutoSize = true;
-            this.lavl.Location = new System.Drawing.Point(6, 64);
-            this.lavl.Name = "lavl";
-            this.lavl.Size = new System.Drawing.Size(215, 13);
-            this.lavl.TabIndex = 4;
-            this.lavl.Text = "Som standard, vis posteringer for gældende:";
+            this.btnOpretBudget.Location = new System.Drawing.Point(177, 3);
+            this.btnOpretBudget.Name = "btnOpretBudget";
+            this.btnOpretBudget.Size = new System.Drawing.Size(129, 48);
+            this.btnOpretBudget.TabIndex = 2;
+            this.btnOpretBudget.Text = "Nyt Budget";
+            this.btnOpretBudget.UseVisualStyleBackColor = true;
+            this.btnOpretBudget.Click += new System.EventHandler(this.btnOpretBudget_Click);
             // 
-            // comboBox2
+            // btnSletBudget
             // 
-            this.comboBox2.FormattingEnabled = true;
-            this.comboBox2.Items.AddRange(new object[] {
-            "Månede",
-            "År",
-            "Uge"});
-            this.comboBox2.Location = new System.Drawing.Point(227, 61);
-            this.comboBox2.Name = "comboBox2";
-            this.comboBox2.Size = new System.Drawing.Size(121, 21);
-            this.comboBox2.TabIndex = 5;
+            this.btnSletBudget.Location = new System.Drawing.Point(177, 57);
+            this.btnSletBudget.Name = "btnSletBudget";
+            this.btnSletBudget.Size = new System.Drawing.Size(129, 48);
+            this.btnSletBudget.TabIndex = 3;
+            this.btnSletBudget.Text = "Slet Budget";
+            this.btnSletBudget.UseVisualStyleBackColor = true;
+            this.btnSletBudget.Click += new System.EventHandler(this.btnSletBudget_Click);
             // 
             // Indstillinger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(439, 296);
+            this.ClientSize = new System.Drawing.Size(319, 296);
             this.Controls.Add(this.tabControl1);
             this.Controls.Add(this.btnOK);
             this.Controls.Add(this.btnAnvend);
@@ -263,6 +312,7 @@
             this.tabKategorier.PerformLayout();
             this.tabProfil.ResumeLayout(false);
             this.tabProfil.PerformLayout();
+            this.tabBudgetter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -288,5 +338,9 @@
         private System.Windows.Forms.Label lavl;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.Label label3;
+        private System.Windows.Forms.TabPage tabBudgetter;
+        private System.Windows.Forms.Button btnSletBudget;
+        private System.Windows.Forms.Button btnOpretBudget;
+        private System.Windows.Forms.ListBox listBoxBudgetter;
     }
 }

@@ -85,9 +85,14 @@
             this.toolStripButton1 = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolStripButton2 = new System.Windows.Forms.ToolStripButton();
-            this.toolStripButton3 = new System.Windows.Forms.ToolStripButton();
+            this.toolStripBudget = new System.Windows.Forms.ToolStripDropDownButton();
+            this.toolStripMenuItem2 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem3 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripMenuItem4 = new System.Windows.Forms.ToolStripMenuItem();
+            this.toolStripSeparator2 = new System.Windows.Forms.ToolStripSeparator();
+            this.opretNytBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
+            this.sletEksisterendeBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cboxVis = new System.Windows.Forms.ComboBox();
-            this.toolStripBudgets = new System.Windows.Forms.ToolStripComboBox();
             this.tabControlMain.SuspendLayout();
             this.tabPageUdgift.SuspendLayout();
             this.tabPageIndtægt.SuspendLayout();
@@ -627,14 +632,12 @@
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
-            this.toolStripBudgets,
-            this.toolStripButton3});
+            this.toolStripBudget});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(775, 25);
             this.toolStrip1.TabIndex = 34;
             this.toolStrip1.Text = "toolStrip1";
-            this.toolStrip1.ItemClicked += new System.Windows.Forms.ToolStripItemClickedEventHandler(this.toolStrip1_ItemClicked);
             // 
             // toolStripButton1
             // 
@@ -658,13 +661,56 @@
             this.toolStripButton2.Text = "Indstillinger";
             this.toolStripButton2.Click += new System.EventHandler(this.toolStripButton2_Click);
             // 
-            // toolStripButton3
+            // toolStripBudget
             // 
-            this.toolStripButton3.Image = ((System.Drawing.Image)(resources.GetObject("toolStripButton3.Image")));
-            this.toolStripButton3.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.toolStripButton3.Name = "toolStripButton3";
-            this.toolStripButton3.Size = new System.Drawing.Size(98, 22);
-            this.toolStripButton3.Text = "Opret Budget";
+            this.toolStripBudget.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
+            this.toolStripMenuItem2,
+            this.toolStripMenuItem3,
+            this.toolStripMenuItem4,
+            this.toolStripSeparator2,
+            this.opretNytBudgetToolStripMenuItem,
+            this.sletEksisterendeBudgetToolStripMenuItem});
+            this.toolStripBudget.Image = ((System.Drawing.Image)(resources.GetObject("toolStripBudget.Image")));
+            this.toolStripBudget.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolStripBudget.Name = "toolStripBudget";
+            this.toolStripBudget.Size = new System.Drawing.Size(88, 22);
+            this.toolStripBudget.Text = "Budgetter";
+            this.toolStripBudget.Click += new System.EventHandler(this.toolStripBudget_Click);
+            // 
+            // toolStripMenuItem2
+            // 
+            this.toolStripMenuItem2.Name = "toolStripMenuItem2";
+            this.toolStripMenuItem2.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem2.Text = "1";
+            // 
+            // toolStripMenuItem3
+            // 
+            this.toolStripMenuItem3.Name = "toolStripMenuItem3";
+            this.toolStripMenuItem3.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem3.Text = "2";
+            // 
+            // toolStripMenuItem4
+            // 
+            this.toolStripMenuItem4.Name = "toolStripMenuItem4";
+            this.toolStripMenuItem4.Size = new System.Drawing.Size(202, 22);
+            this.toolStripMenuItem4.Text = "3";
+            // 
+            // toolStripSeparator2
+            // 
+            this.toolStripSeparator2.Name = "toolStripSeparator2";
+            this.toolStripSeparator2.Size = new System.Drawing.Size(199, 6);
+            // 
+            // opretNytBudgetToolStripMenuItem
+            // 
+            this.opretNytBudgetToolStripMenuItem.Name = "opretNytBudgetToolStripMenuItem";
+            this.opretNytBudgetToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.opretNytBudgetToolStripMenuItem.Text = "Opret nyt budget";
+            // 
+            // sletEksisterendeBudgetToolStripMenuItem
+            // 
+            this.sletEksisterendeBudgetToolStripMenuItem.Name = "sletEksisterendeBudgetToolStripMenuItem";
+            this.sletEksisterendeBudgetToolStripMenuItem.Size = new System.Drawing.Size(202, 22);
+            this.sletEksisterendeBudgetToolStripMenuItem.Text = "Slet eksisterende budget";
             // 
             // cboxVis
             // 
@@ -680,14 +726,6 @@
             this.cboxVis.Name = "cboxVis";
             this.cboxVis.Size = new System.Drawing.Size(65, 23);
             this.cboxVis.TabIndex = 36;
-            this.cboxVis.SelectedIndexChanged += new System.EventHandler(this.cboxVis_SelectedIndexChanged);
-            // 
-            // toolStripBudgets
-            // 
-            this.toolStripBudgets.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.toolStripBudgets.Name = "toolStripBudgets";
-            this.toolStripBudgets.Size = new System.Drawing.Size(121, 25);
-            this.toolStripBudgets.SelectedIndexChanged += new System.EventHandler(this.toolStripBudgets_SelectedIndexChanged);
             // 
             // Budget
             // 
@@ -784,9 +822,14 @@
         private System.Windows.Forms.ComboBox cboxVis;
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
-        private System.Windows.Forms.ToolStripButton toolStripButton3;
         private System.Windows.Forms.CheckedListBox clboxTid;
-        private System.Windows.Forms.ToolStripComboBox toolStripBudgets;
+        private System.Windows.Forms.ToolStripDropDownButton toolStripBudget;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem2;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem3;
+        private System.Windows.Forms.ToolStripMenuItem toolStripMenuItem4;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
+        private System.Windows.Forms.ToolStripMenuItem opretNytBudgetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripMenuItem sletEksisterendeBudgetToolStripMenuItem;
     }
 }
 
