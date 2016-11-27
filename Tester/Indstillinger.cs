@@ -221,16 +221,23 @@ namespace BudgetProgram
         #region Budget-liste front og back end
         private void btnOpretBudget_Click(object sender, EventArgs e)
         {
-            StringBox box = new StringBox("Navn på budget", "Opret budget");
-            box.ShowDialog();
-            string budget = box.output;
-            if (listBoxBudgetter.Items.Contains(budget))
-                MessageBox.Show("Der er allerede oprettet et budget med dette navn");
-            else
+            while (true)
             {
-                listBoxBudgetter.Items.Add(budget);
-                budgets.Add(budget);
+                StringBox box = new StringBox("Navn på budget", "Opret budget");
+                box.ShowDialog();
+                if (box.finished == false)
+                    return;
+                string budget = box.output;
+                if (listBoxBudgetter.Items.Contains(budget))
+                    MessageBox.Show("Der er allerede oprettet et budget med dette navn");
+                else
+                {
+                    listBoxBudgetter.Items.Add(budget);
+                    budgets.Add(budget);
+                    return;
+                }
             }
+
 
         }
 
