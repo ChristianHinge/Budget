@@ -497,6 +497,12 @@ namespace BudgetProgram
         {
 
         }
+
+        private void toolButtonInfo_Click(object sender, EventArgs e)
+        {
+            Info box = new Info();
+            box.ShowDialog();
+        }
     }
 }
 

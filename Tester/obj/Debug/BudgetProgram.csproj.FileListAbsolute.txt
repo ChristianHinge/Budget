@@ -61,3 +61,4 @@ C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetPr
 C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetProgram.csproj.GenerateResource.Cache
 C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetProgram.exe
 C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetProgram.pdb
+C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.Info.resources

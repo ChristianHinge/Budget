@@ -93,6 +93,9 @@
             this.opretNytBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sletEksisterendeBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.cboxVis = new System.Windows.Forms.ComboBox();
+            this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.toolButtonHelp = new System.Windows.Forms.ToolStripButton();
+            this.toolButtonInfo = new System.Windows.Forms.ToolStripButton();
             this.tabControlMain.SuspendLayout();
             this.tabPageUdgift.SuspendLayout();
             this.tabPageIndtægt.SuspendLayout();
@@ -632,7 +635,10 @@
             this.toolStripButton1,
             this.toolStripSeparator1,
             this.toolStripButton2,
-            this.toolStripBudget});
+            this.toolStripBudget,
+            this.toolStripSeparator3,
+            this.toolButtonHelp,
+            this.toolButtonInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
             this.toolStrip1.Size = new System.Drawing.Size(775, 25);
@@ -727,6 +733,28 @@
             this.cboxVis.Size = new System.Drawing.Size(65, 23);
             this.cboxVis.TabIndex = 36;
             // 
+            // toolStripSeparator3
+            // 
+            this.toolStripSeparator3.Name = "toolStripSeparator3";
+            this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // toolButtonHelp
+            // 
+            this.toolButtonHelp.Image = ((System.Drawing.Image)(resources.GetObject("toolButtonHelp.Image")));
+            this.toolButtonHelp.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolButtonHelp.Name = "toolButtonHelp";
+            this.toolButtonHelp.Size = new System.Drawing.Size(52, 22);
+            this.toolButtonHelp.Text = "Help";
+            // 
+            // toolButtonInfo
+            // 
+            this.toolButtonInfo.Image = ((System.Drawing.Image)(resources.GetObject("toolButtonInfo.Image")));
+            this.toolButtonInfo.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.toolButtonInfo.Name = "toolButtonInfo";
+            this.toolButtonInfo.Size = new System.Drawing.Size(48, 22);
+            this.toolButtonInfo.Text = "Info";
+            this.toolButtonInfo.Click += new System.EventHandler(this.toolButtonInfo_Click);
+            // 
             // Budget
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -746,6 +774,7 @@
             this.Controls.Add(this.btnSøg);
             this.Font = new System.Drawing.Font("Segoe UI", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedDialog;
+            this.HelpButton = true;
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "Budget";
@@ -831,6 +860,9 @@
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator2;
         private System.Windows.Forms.ToolStripMenuItem opretNytBudgetToolStripMenuItem;
         private System.Windows.Forms.ToolStripMenuItem sletEksisterendeBudgetToolStripMenuItem;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
+        private System.Windows.Forms.ToolStripButton toolButtonHelp;
+        private System.Windows.Forms.ToolStripButton toolButtonInfo;
     }
 }
 
