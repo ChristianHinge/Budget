@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Windows.Forms;
 using BudgetCore;
@@ -33,7 +33,6 @@ namespace BudgetProgram
 
             //Denne kontrol må ikke flyttes til Controls to defualt funktionen
             cboxVis.SelectedIndex = 3;
-
         }
 
         //Opret postering BLIVER KALDT AF DE TO OPRET KNAPPER
@@ -214,11 +213,10 @@ namespace BudgetProgram
 
         #region Saving And Loading
 
-        private void btnGem_Click(object sender, EventArgs e)
+        private void toolStripButton1_Click(object sender, EventArgs e)
         {
             manager.Gem();
         }
-
 
         #endregion
 
@@ -503,6 +501,8 @@ namespace BudgetProgram
             Info box = new Info();
             box.ShowDialog();
         }
+
+
     }
 }
 

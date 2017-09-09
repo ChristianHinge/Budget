@@ -35,6 +35,10 @@
             this.btnAnvend = new System.Windows.Forms.Button();
             this.btnOK = new System.Windows.Forms.Button();
             this.tabControl1 = new System.Windows.Forms.TabControl();
+            this.tabBudgetter = new System.Windows.Forms.TabPage();
+            this.btnSletBudget = new System.Windows.Forms.Button();
+            this.btnOpretBudget = new System.Windows.Forms.Button();
+            this.listBoxBudgetter = new System.Windows.Forms.ListBox();
             this.tabKategorier = new System.Windows.Forms.TabPage();
             this.listBoxKategorier_u = new System.Windows.Forms.ListBox();
             this.btnSlet_u = new System.Windows.Forms.Button();
@@ -47,14 +51,10 @@
             this.label3 = new System.Windows.Forms.Label();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.textBox1 = new System.Windows.Forms.TextBox();
-            this.tabBudgetter = new System.Windows.Forms.TabPage();
-            this.listBoxBudgetter = new System.Windows.Forms.ListBox();
-            this.btnOpretBudget = new System.Windows.Forms.Button();
-            this.btnSletBudget = new System.Windows.Forms.Button();
             this.tabControl1.SuspendLayout();
+            this.tabBudgetter.SuspendLayout();
             this.tabKategorier.SuspendLayout();
             this.tabProfil.SuspendLayout();
-            this.tabBudgetter.SuspendLayout();
             this.SuspendLayout();
             // 
             // listBoxKategorier_i
@@ -125,6 +125,49 @@
             this.tabControl1.SelectedIndex = 0;
             this.tabControl1.Size = new System.Drawing.Size(317, 268);
             this.tabControl1.TabIndex = 7;
+            // 
+            // tabBudgetter
+            // 
+            this.tabBudgetter.Controls.Add(this.btnSletBudget);
+            this.tabBudgetter.Controls.Add(this.btnOpretBudget);
+            this.tabBudgetter.Controls.Add(this.listBoxBudgetter);
+            this.tabBudgetter.Location = new System.Drawing.Point(4, 22);
+            this.tabBudgetter.Name = "tabBudgetter";
+            this.tabBudgetter.Size = new System.Drawing.Size(309, 242);
+            this.tabBudgetter.TabIndex = 2;
+            this.tabBudgetter.Text = "Budgetter";
+            this.tabBudgetter.UseVisualStyleBackColor = true;
+            // 
+            // btnSletBudget
+            // 
+            this.btnSletBudget.Location = new System.Drawing.Point(177, 57);
+            this.btnSletBudget.Name = "btnSletBudget";
+            this.btnSletBudget.Size = new System.Drawing.Size(129, 48);
+            this.btnSletBudget.TabIndex = 3;
+            this.btnSletBudget.Text = "Slet Budget";
+            this.btnSletBudget.UseVisualStyleBackColor = true;
+            this.btnSletBudget.Click += new System.EventHandler(this.btnSletBudget_Click);
+            // 
+            // btnOpretBudget
+            // 
+            this.btnOpretBudget.Location = new System.Drawing.Point(177, 3);
+            this.btnOpretBudget.Name = "btnOpretBudget";
+            this.btnOpretBudget.Size = new System.Drawing.Size(129, 48);
+            this.btnOpretBudget.TabIndex = 2;
+            this.btnOpretBudget.Text = "Nyt Budget";
+            this.btnOpretBudget.UseVisualStyleBackColor = true;
+            this.btnOpretBudget.Click += new System.EventHandler(this.btnOpretBudget_Click);
+            // 
+            // listBoxBudgetter
+            // 
+            this.listBoxBudgetter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.listBoxBudgetter.FormattingEnabled = true;
+            this.listBoxBudgetter.ItemHeight = 25;
+            this.listBoxBudgetter.Location = new System.Drawing.Point(3, 3);
+            this.listBoxBudgetter.Name = "listBoxBudgetter";
+            this.listBoxBudgetter.Size = new System.Drawing.Size(171, 229);
+            this.listBoxBudgetter.TabIndex = 1;
+            this.listBoxBudgetter.SelectedIndexChanged += new System.EventHandler(this.listBoxBudgetter_SelectedIndexChanged);
             // 
             // tabKategorier
             // 
@@ -252,49 +295,6 @@
             this.textBox1.Size = new System.Drawing.Size(166, 20);
             this.textBox1.TabIndex = 0;
             // 
-            // tabBudgetter
-            // 
-            this.tabBudgetter.Controls.Add(this.btnSletBudget);
-            this.tabBudgetter.Controls.Add(this.btnOpretBudget);
-            this.tabBudgetter.Controls.Add(this.listBoxBudgetter);
-            this.tabBudgetter.Location = new System.Drawing.Point(4, 22);
-            this.tabBudgetter.Name = "tabBudgetter";
-            this.tabBudgetter.Size = new System.Drawing.Size(309, 242);
-            this.tabBudgetter.TabIndex = 2;
-            this.tabBudgetter.Text = "Budgetter";
-            this.tabBudgetter.UseVisualStyleBackColor = true;
-            // 
-            // listBoxBudgetter
-            // 
-            this.listBoxBudgetter.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.listBoxBudgetter.FormattingEnabled = true;
-            this.listBoxBudgetter.ItemHeight = 25;
-            this.listBoxBudgetter.Location = new System.Drawing.Point(3, 3);
-            this.listBoxBudgetter.Name = "listBoxBudgetter";
-            this.listBoxBudgetter.Size = new System.Drawing.Size(171, 229);
-            this.listBoxBudgetter.TabIndex = 1;
-            this.listBoxBudgetter.SelectedIndexChanged += new System.EventHandler(this.listBoxBudgetter_SelectedIndexChanged);
-            // 
-            // btnOpretBudget
-            // 
-            this.btnOpretBudget.Location = new System.Drawing.Point(177, 3);
-            this.btnOpretBudget.Name = "btnOpretBudget";
-            this.btnOpretBudget.Size = new System.Drawing.Size(129, 48);
-            this.btnOpretBudget.TabIndex = 2;
-            this.btnOpretBudget.Text = "Nyt Budget";
-            this.btnOpretBudget.UseVisualStyleBackColor = true;
-            this.btnOpretBudget.Click += new System.EventHandler(this.btnOpretBudget_Click);
-            // 
-            // btnSletBudget
-            // 
-            this.btnSletBudget.Location = new System.Drawing.Point(177, 57);
-            this.btnSletBudget.Name = "btnSletBudget";
-            this.btnSletBudget.Size = new System.Drawing.Size(129, 48);
-            this.btnSletBudget.TabIndex = 3;
-            this.btnSletBudget.Text = "Slet Budget";
-            this.btnSletBudget.UseVisualStyleBackColor = true;
-            this.btnSletBudget.Click += new System.EventHandler(this.btnSletBudget_Click);
-            // 
             // Indstillinger
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -305,14 +305,15 @@
             this.Controls.Add(this.btnAnvend);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "Indstillinger";
+            this.StartPosition = System.Windows.Forms.FormStartPosition.CenterParent;
             this.Text = "Indstillinger";
             this.Load += new System.EventHandler(this.Indstillinger_Load);
             this.tabControl1.ResumeLayout(false);
+            this.tabBudgetter.ResumeLayout(false);
             this.tabKategorier.ResumeLayout(false);
             this.tabKategorier.PerformLayout();
             this.tabProfil.ResumeLayout(false);
             this.tabProfil.PerformLayout();
-            this.tabBudgetter.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
