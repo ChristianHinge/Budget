@@ -1,4 +1,4 @@
-﻿namespace BudgetProgram
+namespace BudgetProgram
 {
     partial class Info
     {
@@ -193,9 +193,9 @@
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.Location = new System.Drawing.Point(75, 8);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(205, 31);
+            this.label2.Size = new System.Drawing.Size(186, 31);
             this.label2.TabIndex = 1;
-            this.label2.Text = "Flere Pølsehorn";
+            this.label2.Text = "Money tracker";
             // 
             // pictureBox2
             // 

@@ -69,6 +69,12 @@
     <Compile Include="Budget.Designer.cs">
       <DependentUpon>Budget.cs</DependentUpon>
     </Compile>
+    <Compile Include="EditPosteringForm.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="EditPosteringForm.Designer.cs">
+      <DependentUpon>EditPosteringForm.cs</DependentUpon>
+    </Compile>
     <Compile Include="HingeIO.cs" />
     <Compile Include="Indstillinger.cs">
       <SubType>Form</SubType>
@@ -97,6 +103,9 @@
     </Compile>
     <EmbeddedResource Include="Budget.resx">
       <DependentUpon>Budget.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="EditPosteringForm.resx">
+      <DependentUpon>EditPosteringForm.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Indstillinger.resx">
       <DependentUpon>Indstillinger.cs</DependentUpon>

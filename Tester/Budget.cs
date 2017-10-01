@@ -67,7 +67,7 @@ namespace BudgetProgram
             UpdatePoseringsLabel();
         }
 
-        string GetStatusMessage(int status)
+        public string GetStatusMessage(int status)
         {
             switch (status)
             {
@@ -88,14 +88,21 @@ namespace BudgetProgram
         {
             string prompt = "Er du sikker på at du ønsker at slette nedenstående postering(er)?\n";
             //Finder navnene på de valgte list items
-            foreach (ListViewItem hej in listPosteringer.SelectedItems)
-                prompt += "\n" + hej.SubItems[0].Text;
+            for (int i = listPosteringer.SelectedItems.Count, y=0; i>0; i--,y++)
+            {
+                if (y==5)
+                {
+                    prompt += "\n...\n og " + i + " andre posteringer?";
+                    break;
+                }
+                prompt += "\n" + listPosteringer.SelectedItems[i-1].SubItems[0].Text;
+            }
+
 
             if (MessageBox.Show(prompt, "Sletning af posteringer", MessageBoxButtons.OKCancel) == DialogResult.OK)
             {
                 foreach (ListViewItem post in listPosteringer.SelectedItems)
                     manager.SletPostering(post);
-
 
                 UpdatePoseringsLabel();
                 VisAllePosteringer();
@@ -203,7 +210,7 @@ namespace BudgetProgram
             menu2 = toolStripBudget.DropDownItems.Add("Slet eksisterende budget");
             menu2.Click += new System.EventHandler(SletBudget);
 
-            this.Text = "Flere pølsehorn | " + manager.budgetName;
+            this.Text = "Money Tracker | " + manager.budgetName;
             searchingAllowed = true;
             SøgPosteringer();
 
@@ -269,12 +276,14 @@ namespace BudgetProgram
             //Parameter Assignment
             foreach (var item in cListType.CheckedItems)
                 allowedTyper.Add(item.ToString());
-
+           
             foreach (var item in cListKategorier_u.CheckedItems)
                 uallowedKategorier.Add(item.ToString());
+            uallowedKategorier.Add("");
 
             foreach (var item in cListKategorier_i.CheckedItems)
                 iallowedKategorier.Add(item.ToString());
+            iallowedKategorier.Add("");
 
             datoSearchType = clboxTid.SelectedIndex;
             minDato = dateTimeStart.Value;
@@ -502,7 +511,34 @@ namespace BudgetProgram
             box.ShowDialog();
         }
 
+        private void listPosteringer_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            ListViewItem listPostering = listPosteringer.SelectedItems[0];
+            EditPosteringForm editPosteringForm = new EditPosteringForm(listPostering);
+            editPosteringForm.ShowDialog();
+            if (editPosteringForm.posteringRedigeret) {
+                manager.SletPostering(listPostering);
+                SøgPosteringer();
+            }
+        }
 
+        private void btnImportCVS_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Denne funktion loader posteringer, som er blevet nedhentet fra banken. Denne funktion medfører endvidere at budgettet gemmes. Ønsker du at fortsætte?", "Load Posteringer", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                manager.LoadCVS();
+            }
+            SøgPosteringer();
+            manager.Gem();
+        }
+
+        private void RunScript_Click(object sender, EventArgs e)
+        {
+            if (MessageBox.Show("Denne funktion scraper banken for posteringer og gemmer disse i en CVS fil. Når scrapingen er blevet udført, skal posteringerne tilføjes ved klik på 'Load Posteringer'.Ønsker du at fortsætte?", "Scrape Bank", MessageBoxButtons.YesNo) == DialogResult.Yes)
+            {
+                manager.RunScript();
+            }
+        }
     }
 }
 

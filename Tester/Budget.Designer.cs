@@ -92,6 +92,9 @@ namespace BudgetProgram
             this.opretNytBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sletEksisterendeBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
+            this.btnImportCVS = new System.Windows.Forms.ToolStripButton();
+            this.RunScript = new System.Windows.Forms.ToolStripButton();
+            this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolButtonInfo = new System.Windows.Forms.ToolStripButton();
             this.cboxVis = new System.Windows.Forms.ComboBox();
             this.tabControlMain.SuspendLayout();
@@ -332,12 +335,13 @@ namespace BudgetProgram
             this.listPosteringer.FullRowSelect = true;
             this.listPosteringer.Location = new System.Drawing.Point(297, 58);
             this.listPosteringer.Name = "listPosteringer";
-            this.listPosteringer.Size = new System.Drawing.Size(466, 555);
+            this.listPosteringer.Size = new System.Drawing.Size(466, 561);
             this.listPosteringer.TabIndex = 7;
             this.listPosteringer.UseCompatibleStateImageBehavior = false;
             this.listPosteringer.View = System.Windows.Forms.View.Details;
             this.listPosteringer.ColumnClick += new System.Windows.Forms.ColumnClickEventHandler(this.ColumnClick_Event);
             this.listPosteringer.SelectedIndexChanged += new System.EventHandler(this.listPosteringer_SelectedIndexChanged);
+            this.listPosteringer.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.listPosteringer_MouseDoubleClick);
             // 
             // cHeaderBeskrivelse
             // 
@@ -377,7 +381,7 @@ namespace BudgetProgram
             // 
             // btnAddSamples
             // 
-            this.btnAddSamples.Location = new System.Drawing.Point(290, 590);
+            this.btnAddSamples.Location = new System.Drawing.Point(273, 590);
             this.btnAddSamples.Name = "btnAddSamples";
             this.btnAddSamples.Size = new System.Drawing.Size(96, 38);
             this.btnAddSamples.TabIndex = 13;
@@ -486,7 +490,7 @@ namespace BudgetProgram
             // 
             // btnSøg
             // 
-            this.btnSøg.Location = new System.Drawing.Point(518, 568);
+            this.btnSøg.Location = new System.Drawing.Point(497, 569);
             this.btnSøg.Name = "btnSøg";
             this.btnSøg.Size = new System.Drawing.Size(85, 34);
             this.btnSøg.TabIndex = 27;
@@ -633,6 +637,9 @@ namespace BudgetProgram
             this.toolStripButton2,
             this.toolStripBudget,
             this.toolStripSeparator3,
+            this.RunScript,
+            this.btnImportCVS,
+            this.toolStripSeparator1,
             this.toolButtonInfo});
             this.toolStrip1.Location = new System.Drawing.Point(0, 0);
             this.toolStrip1.Name = "toolStrip1";
@@ -713,6 +720,29 @@ namespace BudgetProgram
             // 
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
+            // 
+            // btnImportCVS
+            // 
+            this.btnImportCVS.Image = ((System.Drawing.Image)(resources.GetObject("btnImportCVS.Image")));
+            this.btnImportCVS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImportCVS.Name = "btnImportCVS";
+            this.btnImportCVS.Size = new System.Drawing.Size(116, 22);
+            this.btnImportCVS.Text = "Load Posteringer";
+            this.btnImportCVS.Click += new System.EventHandler(this.btnImportCVS_Click);
+            // 
+            // RunScript
+            // 
+            this.RunScript.Image = ((System.Drawing.Image)(resources.GetObject("RunScript.Image")));
+            this.RunScript.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.RunScript.Name = "RunScript";
+            this.RunScript.Size = new System.Drawing.Size(91, 22);
+            this.RunScript.Text = "Scrape Bank";
+            this.RunScript.Click += new System.EventHandler(this.RunScript_Click);
+            // 
+            // toolStripSeparator1
+            // 
+            this.toolStripSeparator1.Name = "toolStripSeparator1";
+            this.toolStripSeparator1.Size = new System.Drawing.Size(6, 25);
             // 
             // toolButtonInfo
             // 
@@ -845,6 +875,9 @@ namespace BudgetProgram
         private System.Windows.Forms.ToolStripMenuItem sletEksisterendeBudgetToolStripMenuItem;
         private System.Windows.Forms.ToolStripSeparator toolStripSeparator3;
         private System.Windows.Forms.ToolStripButton toolButtonInfo;
+        private System.Windows.Forms.ToolStripButton btnImportCVS;
+        private System.Windows.Forms.ToolStripButton RunScript;
+        private System.Windows.Forms.ToolStripSeparator toolStripSeparator1;
     }
 }
 

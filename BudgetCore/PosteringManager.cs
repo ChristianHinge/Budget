@@ -127,7 +127,28 @@ namespace BudgetCore
             sr.Close();
 
         }
+        public void LoadCVS()
+        {
+            StreamReader sr = new StreamReader(Path.Combine(dataDirectory, "ScriptPosteringer.txt"));
+            string line = sr.ReadLine();
 
+            while (line != null)
+            {
+                posteringer.Add(Unwrap(line));
+                line = sr.ReadLine();
+            }
+            sr.Close();
+            StreamWriter sw = new StreamWriter(Path.Combine(dataDirectory, "ScriptPosteringer.txt"));
+            sw.Close();
+        }
+
+        public void RunScript()
+        {
+            System.Diagnostics.Process proc = new System.Diagnostics.Process();
+            proc.StartInfo.FileName = Path.Combine(dataDirectory, "StartScript.bat");
+            proc.StartInfo.WorkingDirectory = dataDirectory;
+            proc.Start();
+        }
         private void DeleteUnreferencedBudgets()
         {
             foreach (string dir in Directory.GetDirectories(dataDirectory))
@@ -292,7 +313,7 @@ namespace BudgetCore
 
         #region Liste Manipulation
         //Finder og returnere en postering givet et listviewItem
-        private Postering GetPostering(ListViewItem item)
+        public Postering GetPostering(ListViewItem item)
         {
             foreach (Postering postering in posteringer)
                 if (postering.ListItem == item)
