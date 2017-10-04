@@ -92,8 +92,8 @@ namespace BudgetProgram
             this.opretNytBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.sletEksisterendeBudgetToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripSeparator3 = new System.Windows.Forms.ToolStripSeparator();
-            this.btnImportCVS = new System.Windows.Forms.ToolStripButton();
             this.RunScript = new System.Windows.Forms.ToolStripButton();
+            this.btnImportCVS = new System.Windows.Forms.ToolStripButton();
             this.toolStripSeparator1 = new System.Windows.Forms.ToolStripSeparator();
             this.toolButtonInfo = new System.Windows.Forms.ToolStripButton();
             this.cboxVis = new System.Windows.Forms.ComboBox();
@@ -721,15 +721,6 @@ namespace BudgetProgram
             this.toolStripSeparator3.Name = "toolStripSeparator3";
             this.toolStripSeparator3.Size = new System.Drawing.Size(6, 25);
             // 
-            // btnImportCVS
-            // 
-            this.btnImportCVS.Image = ((System.Drawing.Image)(resources.GetObject("btnImportCVS.Image")));
-            this.btnImportCVS.ImageTransparentColor = System.Drawing.Color.Magenta;
-            this.btnImportCVS.Name = "btnImportCVS";
-            this.btnImportCVS.Size = new System.Drawing.Size(116, 22);
-            this.btnImportCVS.Text = "Load Posteringer";
-            this.btnImportCVS.Click += new System.EventHandler(this.btnImportCVS_Click);
-            // 
             // RunScript
             // 
             this.RunScript.Image = ((System.Drawing.Image)(resources.GetObject("RunScript.Image")));
@@ -738,6 +729,15 @@ namespace BudgetProgram
             this.RunScript.Size = new System.Drawing.Size(91, 22);
             this.RunScript.Text = "Scrape Bank";
             this.RunScript.Click += new System.EventHandler(this.RunScript_Click);
+            // 
+            // btnImportCVS
+            // 
+            this.btnImportCVS.Image = ((System.Drawing.Image)(resources.GetObject("btnImportCVS.Image")));
+            this.btnImportCVS.ImageTransparentColor = System.Drawing.Color.Magenta;
+            this.btnImportCVS.Name = "btnImportCVS";
+            this.btnImportCVS.Size = new System.Drawing.Size(116, 22);
+            this.btnImportCVS.Text = "Load Posteringer";
+            this.btnImportCVS.Click += new System.EventHandler(this.btnImportCVS_Click);
             // 
             // toolStripSeparator1
             // 
@@ -772,6 +772,7 @@ namespace BudgetProgram
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
+            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.BackColor = System.Drawing.SystemColors.Control;
             this.BackgroundImageLayout = System.Windows.Forms.ImageLayout.None;
