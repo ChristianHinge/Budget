@@ -174,6 +174,7 @@ namespace BudgetCore
 
         private string LoadBudgetFiles()
         {
+            CheckProgramExistence();
             budgetFiles = new List<string>();
             StreamReader sr = new StreamReader(programData);
             budgetName = sr.ReadLine();
@@ -302,7 +303,8 @@ namespace BudgetCore
                 sw.WriteLine("Coke");
                 sw.Close();
             }
-
+            if (!Directory.Exists(currentBudget))
+                Directory.CreateDirectory(currentBudget);
 
         }
 

@@ -1,7 +1,0 @@
-XLODBC
-1
-DBQ=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\BUDGET;DefaultDir=C:\USERS\USER\DOCUMENTS\VISUAL STUDIO 2015\PROJECTS\BUDGET;Driver={Microsoft Access Text Driver (*.txt, *.csv)};DriverId=27;Extensions=asc,csv,tab,txt;FIL=text;MaxBufferSize=2048;MaxScanRows=25;PageTimeout=5;SafeTransactions=0;Threads=3;UID=admin;UserCommitSync=Yes;
-SELECT posteringFil.`Burger;65`, posteringFil.`7;Mad;05-08-2016 00:00:00;True`  FROM posteringFil.txt posteringFil
-
-
-Burger;65	7;Mad;05-08-2016 00:00:00;True

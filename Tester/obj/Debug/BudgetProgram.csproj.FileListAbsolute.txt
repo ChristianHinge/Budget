@@ -64,3 +64,26 @@ C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetPr
 C:\Users\Bruger\Documents\Visual Studio 2015\Projects\Budget\Tester\obj\Debug\BudgetProgram.Info.resources
 C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetProgram.Info.resources
 C:\Users\chris\Documents\Visual Studio Projects\Budget\Tester\obj\Debug\BudgetProgram.EditPosteringForm.resources
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\BudgetProgram.exe.config
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\BudgetProgram.exe
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\BudgetProgram.pdb
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Core.dll
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Platform.dll
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Xaml.dll
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Core.pdb
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Core.xml
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Platform.pdb
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Xaml.pdb
+C:\Users\chris\source\repos\Budget\Tester\bin\Debug\Xamarin.Forms.Xaml.xml
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.csprojResolveAssemblyReference.cache
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.csproj.ResolveComReference.cache
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.Budget.resources
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.EditPosteringForm.resources
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.Indstillinger.resources
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.Info.resources
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.Properties.Resources.resources
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.StringBox.resources
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.csproj.GenerateResource.Cache
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.csproj.CoreCompileInputs.cache
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.exe
+C:\Users\chris\source\repos\Budget\Tester\obj\Debug\BudgetProgram.pdb
